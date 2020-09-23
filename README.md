@@ -5,5 +5,8 @@ A study project to demonstrate MST algorithm using Electron.js and React
 - To run in dev mode:
 + Proceed to root folder of project
 `npm install`
+
 `npm start`
+
 `npm electron-start`
+
