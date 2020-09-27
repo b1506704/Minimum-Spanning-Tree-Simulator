@@ -4,9 +4,10 @@ A study project to demonstrate MST algorithm using Electron.js and React
 - Latest Nodejs is required to run the project in dev mode.
 - To run in dev mode:
 + Proceed to root folder of project
+
 `npm install`
 
-`npm start`
+`cross-env BROWSER=none npm run react-start`
 
-`npm electron-start`
+`cross-env NODE_ENV=dev nodemon --exec ""electron .""`
 
