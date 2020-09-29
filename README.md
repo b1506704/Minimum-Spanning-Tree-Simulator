@@ -2,7 +2,7 @@
 A study project to demonstrate MST algorithm using Electron.js and React 
 # Installation guide
 
-  1. Install NodeJs, Yarn, Visual Studio Code (recommended IDE)
+  1. Install NodeJs, Yarn.
   
   2. Clone, or download this repository as zip.
   
@@ -11,6 +11,7 @@ A study project to demonstrate MST algorithm using Electron.js and React
   `npm install`
   
   `npm run start`
-
+  
+  
 
 
