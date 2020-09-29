@@ -56,6 +56,8 @@
     "appId": "org.develar.MST-Simulator",
     "files": [
       "dist/",
+      "images/",
+      "fonts/",
       "node_modules/",
       "app.html",
       "main.prod.js",

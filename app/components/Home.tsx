@@ -6,8 +6,18 @@ import styles from './Home.css';
 export default function Home(): JSX.Element {
   return (
     <div className={styles.container} data-tid="container">
-      <h2>Home</h2>
-      <Link to={routes.COUNTER}>to Counter</Link>
+      <div id="stars" />
+      <div id="stars2" />
+      <div id="stars3" />
+      <div id="title">
+        <span> Welcome to Minimum Spanning Tree Simulator </span>
+        <br />
+        <span> - IMMENSE SPACE - </span>
+        <br />
+        <Link to={routes.COUNTER}>
+          <span> to Counter </span>
+        </Link>
+      </div>
     </div>
   );
 }
