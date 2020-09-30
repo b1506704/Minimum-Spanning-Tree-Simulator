@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import routes from '../constants/routes.json';
-import styles from './Home.css';
+import styles from './Home.scss';
 
 export default function Home(): JSX.Element {
   return (
@@ -9,13 +9,13 @@ export default function Home(): JSX.Element {
       <div id="stars" />
       <div id="stars2" />
       <div id="stars3" />
-      <div id="title">
-        <span> Welcome to Minimum Spanning Tree Simulator </span>
+      <div className="title">
+        <span>Minimum Spanning Tree</span>
         <br />
-        <span> - IMMENSE SPACE - </span>
+        <span>-Simulator-</span>
         <br />
         <Link to={routes.COUNTER}>
-          <span> to Counter </span>
+          <div className="subtitle"> Press any key to continue </div>
         </Link>
       </div>
     </div>

@@ -1,0 +1,38 @@
+1. Button Effects:
+- https://codepen.io/nouribram/pen/WNQzoOd
+- https://codepen.io/kathykato/pen/rZRaNe
+- https://codepen.io/ahart814/pen/yLNMZGa
+- https://codepen.io/YusukeNakaya/pen/vYYzbGW
+- https://codepen.io/ma_suwa/pen/qBBYKNy?__cf_chl_jschl_tk__=af403fdbd053d875119e02c27a664bdf64e71863-1601483700-0-Aakj-M7DKKjGgIyVbLlbB3KOjU_i0NRS9YvDUYgTNRsdtygXnb6sMQe9DfYyahSDOg0cVMI9kV_xiwr2_z55JhcCoZN0UoTXiFgLpvNX1wQ6lgulknDNjk5zh2_EMfdVrZopZbS3tyrhsSBsXm54XiDdMhHDcGOI75l1QuRCCDEHY874EOO_7EVRdzSCqyBfKsTsC-5LpDC-MpsHIT4zlX5Oj4GxyfH6VNYuoKuFIbZxzq_W8MQTN0jyEOKgVfL9CsQb2NWD9XsI_L5YqgOsmCJSWnZLc1Hel8ng0PGEj0nR8sur2f-gN9yDVMoo0Lh_v9oXwv7Sj1BGrL7WTomJJxB7vwwJrVKGP7v1pLKHLlEB
+- https://codepen.io/ma_suwa/pen/QWWqJBK?__cf_chl_jschl_tk__=5f5c66305d76c6e0411a0fa8931f32c3e3b701e6-1601483700-0-AaK2Sw4sor16LL58xd5cOEFMio59g2oPY9ifsRZGbtyeLIUtiomSkTfhkMzBQnmqatau6X83p8xDgnhZ0ZtUjjrU__W8g7bnkJpUwh5pSZUbyX3EHTf2Dpd4FieQa5qrkClZ4O1ps6y3BHQT97dXuxJc-hYQEOkdFkpeTR8OSZNM8NED6rVnKrzPHgd8i_Ebx5YuCXELT5gT-0SJqGgirShtsZShwTsp62Cazs44A8kfE6r0v9IQ7PZKPFdkdeGZpc2xpwxeaPiE4CTef-C_Pv9zl0MHQucKhJeGA_IH3rpvOWI5qZ642SjNODgCQNA9gGtwwz-TskGEOwWN6f04rOd_uxhw-qsoM5pD-gZcEd0Y
+- https://codepen.io/KamilDyrek/pen/aXebmO?__cf_chl_jschl_tk__=da9e2f8de2d7249fc392f382e48bf2ab3f87e3fc-1601483698-0-AanItOl5_CYO13P0MSCI0Ka1Dkrf9o422rIyr4jMPC532SKwyyFtGICBESoPTC9PY6Twx1jv7lyqYGBDuC5wFPRY8nDLo9UkdQjjlcj6dMGpCTbcngyvezc3-HhioqE7e75Hy9vhDyQl6Ges2k6yCv32FbUs9CxwTgIIphwUF07QTATNg7v6gpR0gKRMEdGSBqcGKdGT5fp7x5ZbHHvEwLnlbuGeLQldgKBcd_PXyiBL8cjpUxyYr8-fodR7x5R9YC8MrJc_4GhLakRMWDbp3LuGisl_P9aIC_BFA-KjEvqVbXihK-9bGPkz2JHeS9Dy6neJosNEjAq7GegdhKDDtHYjcrDksQ8ixRC5wt_ldlnt
+- https://codepen.io/tawfiqin/pen/OdgEJM?__cf_chl_jschl_tk__=2185487674f68ec06d632223f41fd96842628628-1601483696-0-AYVmLDNFuuc1DYtx2tuNJuAX6aXSgvKd99hDTrIx-sbRxqWm-Qmcby-Pli3VjWyNaOD37YVYgSWt9RNnXMYjzY0dO17PlR5cQ489DOLomQa0okYYmLgcEzkPJCkwmCh8b6FFqwfT1KXIaaqNasBrSuHPMEa7G9hCodwTOGi74ZTEbKsCbySQG0ndEgTqWKQNTM7pjZwyTnKcL92K0A5grPozqfIHYCiNVjyOIQ5BvqmjadOl8Im0oJslNU2hXd32whLYSrHBk6qQ2v2_mphYWnqnlKSz3CscEm-W_4E30H_1YO0YO5SLLji9elXzUtJ6EvRdnd-m2cBaFt8wx1YVirBPAedbIeKnhR8LWsEk9NN1
+
+2. Text Effects:
+- https://code.tutsplus.com/tsutorials/create-a-sticky-note-effect-in-5-easy-steps-with-css3-and-html5--net-13934
+- https://codepen.io/giana/pen/qmKNeE
+- https://freefrontend.com/css-text-effects/
+- https://codepen.io/davidlillo/pen/wZRagx
+- https://codepen.io/fossheim/pen/PoqKoLY
+- https://codepen.io/mimikos/pen/QMjjzy
+- https://codepen.io/Moiety/pen/OPPKMr
+3. Transition Effects:
+- https://tympanus.net/codrops/2012/07/02/swatch-book-with-css3-and-jquery/
+- https://tympanus.net/codrops/2012/06/12/css-only-responsive-layout-with-smooth-transitions/
+- https://tutorialzine.com/2012/02/apple-like-login-form
+- https://www.alessioatzeni.com/blog/css3-with-jquery-reverse-animation/
+- https://tympanus.net/codrops/2012/06/05/fullscreen-slit-slider-with-jquery-and-css3/
+- https://codyhouse.co/gem/ink-transition-effect
+4. Background Effects:
+- https://media.24ways.org/2009/15/space.html
+5. Clock:
+- https://paulrhayes.com/experiments/clock/#clock
+6. Border Effects:
+- https://freefrontend.com/css-border-animations/
+- https://codepen.io/uiswarup/pen/RBByzW
+- https://codepen.io/exah/pen/Lqyem
+- https://codepen.io/DannyJoris/pen/BrMgza
+- https://codepen.io/flatking/pen/oBxKPx
+- https://codepen.io/antares/pen/myPVPW
+- https://tympanus.net/codrops/2014/02/26/creating-a-border-animation-effect-with-svg-and-css/
+

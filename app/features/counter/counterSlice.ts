@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 // eslint-disable-next-line import/no-cycle
 import { AppThunk, RootState } from '../../store';
 
-const counterSlice = createSlice({
-  name: 'counter',
+const modeSelection = createSlice({
+  name: 'modeSelection',
   initialState: { value: 0 },
   reducers: {
     increment: (state) => {
@@ -15,12 +15,12 @@ const counterSlice = createSlice({
   },
 });
 
-export const { increment, decrement } = counterSlice.actions;
+export const { increment, decrement } = modeSelection.actions;
 
 export const incrementIfOdd = (): AppThunk => {
   return (dispatch, getState) => {
     const state = getState();
-    if (state.counter.value % 2 === 0) {
+    if (state.modeSelection.value % 2 === 0) {
       return;
     }
     dispatch(increment());
@@ -33,6 +33,6 @@ export const incrementAsync = (delay = 1000): AppThunk => (dispatch) => {
   }, delay);
 };
 
-export default counterSlice.reducer;
+export default modeSelection.reducer;
 
-export const selectCount = (state: RootState) => state.counter.value;
+export const selectCount = (state: RootState) => state.modeSelection.value;

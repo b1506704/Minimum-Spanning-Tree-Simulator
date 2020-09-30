@@ -95,6 +95,7 @@ const createWindow = async () => {
       mainWindow.minimize();
     } else {
       mainWindow.show();
+      mainWindow.setResizable(false);
       mainWindow.maximize();
       mainWindow.focus();
     }
