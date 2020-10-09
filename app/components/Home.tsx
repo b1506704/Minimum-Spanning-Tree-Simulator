@@ -14,7 +14,7 @@ export default function Home(): JSX.Element {
         <br />
         <span>-Simulator-</span>
         <br />
-        <Link to={routes.COUNTER}>
+        <Link to={routes.SELECTION}>
           <div className="subtitle">Press any key to continue</div>
         </Link>
       </div>

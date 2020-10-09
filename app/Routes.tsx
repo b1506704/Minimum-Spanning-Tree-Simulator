@@ -4,15 +4,22 @@ import { Switch, Route } from 'react-router-dom';
 import routes from './constants/routes.json';
 import App from './containers/App';
 import HomePage from './containers/HomePage';
-
 // Lazily load routes and code split with webpack
-const LazyCounterPage = React.lazy(() =>
-  import(/* webpackChunkName: "CounterPage" */ './containers/CounterPage')
+const LazySelectionPage = React.lazy(() =>
+  import(/* webpackChunkName: "SelectionPage" */ './containers/SelectionPage')
+);
+const LazyDashboardPage = React.lazy(() =>
+  import(/* webpackChunkName: "DashboardPage" */ './containers/DashboardPage')
+);
+const SelectionPage = (props: Record<string, unknown>) => (
+  <React.Suspense fallback={<h1>Loading...</h1>}>
+    <LazySelectionPage {...props} />
+  </React.Suspense>
 );
 
-const CounterPage = (props: Record<string, unknown>) => (
+const DashboardPage = (props: Record<string, unknown>) => (
   <React.Suspense fallback={<h1>Loading...</h1>}>
-    <LazyCounterPage {...props} />
+    <LazyDashboardPage {...props} />
   </React.Suspense>
 );
 
@@ -20,7 +27,8 @@ export default function Routes() {
   return (
     <App>
       <Switch>
-        <Route path={routes.COUNTER} component={CounterPage} />
+        <Route path={routes.SELECTION} component={SelectionPage} />
+        <Route path={routes.DASHBOARD} component={DashboardPage} />
         <Route path={routes.HOME} component={HomePage} />
       </Switch>
     </App>
