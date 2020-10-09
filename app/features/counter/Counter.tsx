@@ -18,7 +18,7 @@ export default function Counter() {
     <div className={styles.background}>
       <div className={styles.backButton} data-tid="backButton">
         <Link to={routes.HOME}>
-          <i className="fa fa-arrow-left fa-3x" />
+          <div className="fa fa-arrow-left fa-3x fa-inverse"> </div>
         </Link>
       </div>
       <div className={styles.box}>
@@ -52,6 +52,7 @@ export default function Counter() {
           <line className={styles.right} x1="300" y1="0" x2="300" y2="1380" />
         </svg>
         <h3>Load Graph</h3>
+        <span> __________ </span>
         <span>Continue a route</span>
       </div>
       {/* <div className={`counter ${styles.counter}`} data-tid="counter">
