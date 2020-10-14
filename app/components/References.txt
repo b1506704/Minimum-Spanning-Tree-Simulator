@@ -31,6 +31,7 @@ CHECKED - http://tympanus.net/codrops/2012/03/23/responsive-content-navigator-wi
 - https://tympanus.net/codrops/2014/01/07/shape-hover-effect-with-svg/
 4. Background Effects:
 - https://media.24ways.org/2009/15/space.html
+- https://www.meziantou.net/how-to-make-a-star-wars-effect-in-html-css.htm
 CHECKED - http://tympanus.net/codrops/2012/04/24/audio-slideshow-with-jplayer/
 5. Clock:
 CHECKED - https://paulrhayes.com/experiments/clock/#clock
@@ -42,4 +43,13 @@ CHECKED - https://codepen.io/uiswarup/pen/RBByzW
 - https://codepen.io/flatking/pen/oBxKPx
 - https://codepen.io/antares/pen/myPVPW
 CHECKED - https://tympanus.net/codrops/2014/02/26/creating-a-border-animation-effect-with-svg-and-css/
-
+7. SPACE ELEMENTS:
+- https://codepen.io/giuliacardieri/pen/EypPdg
+- https://cssanimation.rocks/space-transitions/
+- https://codepen.io/monstersaurous/pen/Gatqe
+- CHECKED https://codepen.io/dodozhang21/pen/Ewftz
+- CHECKED https://cssdeck.com/labs/blob-button
+- CHECKED https://cssdeck.com/labs/w3kowgag
+- CHECKED https://css-tricks.com/circular-3d-buttons/
+- CHECKED https://codepen.io/zerdmann/pen/WGJgKj/
+- CHECKED https://codepen.io/sylvaingarnot/pen/LNJgaZ

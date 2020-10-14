@@ -5,6 +5,20 @@
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  outline: none;
+}
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+.clearfix:before,
+.clearfix:after {
+  content: '';
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
 }
 @font-face {
   font-family: Subtitle;
@@ -31,7 +45,6 @@ body {
   -webkit-app-region: no-drag;
   z-index: 1;
 }
-
 
 .title {
   position: absolute;
