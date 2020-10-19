@@ -43,7 +43,11 @@ CHECKED - https://codepen.io/uiswarup/pen/RBByzW
 - https://codepen.io/flatking/pen/oBxKPx
 - https://codepen.io/antares/pen/myPVPW
 CHECKED - https://tympanus.net/codrops/2014/02/26/creating-a-border-animation-effect-with-svg-and-css/
-7. SPACE ELEMENTS:
+7. Switch Effects:
+- https://codepen.io/jkantner/pen/dBeWyK
+- https://codepen.io/LewisLong/pen/BKEMjP
+
+8. SPACE ELEMENTS:
 - https://codepen.io/giuliacardieri/pen/EypPdg
 - https://cssanimation.rocks/space-transitions/
 - https://codepen.io/monstersaurous/pen/Gatqe
@@ -53,3 +57,10 @@ CHECKED - https://tympanus.net/codrops/2014/02/26/creating-a-border-animation-ef
 - CHECKED https://css-tricks.com/circular-3d-buttons/
 - CHECKED https://codepen.io/zerdmann/pen/WGJgKj/
 - CHECKED https://codepen.io/sylvaingarnot/pen/LNJgaZ
+- CHECKED https://codepen.io/milanraring/pen/KKwRBQp
+- CHECKED https://codepen.io/marcusconnor/pen/QJNvMa
+- CHECKED https://codepen.io/Wujek_Greg/pen/Bqvzbp
+9. GRAPH:
+- CHECKED https://js.cytoscape.org/
+10. LazyLoad:
+- CHECKED https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay

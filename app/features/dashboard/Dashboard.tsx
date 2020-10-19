@@ -42,107 +42,124 @@ export default function Dashboard() {
         </div> */}
       </div>
       <div className={styles.bottom} id="btnPanel">
-        <div className={styles.title}>| ROUTES |</div>
-        <form className={styles.graph_form} id="form">
-          <label htmlFor="first_vertex" className={styles.graph_label}>
-            1st_Edge
-            <select className={styles.graph_select} name="first_vertex">
-              <option value="Earth"> Earth </option>
-              <option value="Mars"> Mars </option>
-              <option value="Venus"> Venus </option>
-            </select>
-            <span> to </span>
-            <select className={styles.graph_select} name="first_vertex">
-              <option value="Earth"> Earth </option>
-              <option value="Mars"> Mars </option>
-              <option value="Venus"> Venus </option>
-            </select>
-            <span> = </span>
-            <input
-              type="text"
-              id={styles.firstEdge}
-              className={styles.graph_value}
-              name="firstEdge"
-              value="15"
-            />
-          </label>
-          <input type="button" className={styles.graph_save} value="Save" />
-        </form>
-        <form className={styles.graph_form}>
-          <label htmlFor="second_vertex" className={styles.graph_label}>
-            2nd_Edge
-            <select className={styles.graph_select} name="second_vertex">
-              <option value="Earth"> Earth </option>
-              <option value="Mars"> Mars </option>
-              <option value="Venus"> Venus </option>
-            </select>
-            <span> to </span>
-            <select className={styles.graph_select} name="first_vertex">
-              <option value="Earth"> Earth </option>
-              <option value="Mars"> Mars </option>
-              <option value="Venus"> Venus </option>
-            </select>
-            <span> = </span>
-            <input
-              type="text"
-              id={styles.firstEdge}
-              className={styles.graph_value}
-              name="firstEdge"
-              value="15"
-            />
-          </label>
-          <input type="button" className={styles.graph_save} value="Save" />
-        </form>
-        <form className={styles.graph_form}>
-          <label htmlFor="third_vertex" className={styles.graph_label}>
-            3rd_Edge
-            <select className={styles.graph_select} name="third_vertex">
-              <option value="Earth"> Earth </option>
-              <option value="Mars"> Mars </option>
-              <option value="Venus"> Venus </option>
-            </select>
-            <span> to </span>
-            <select className={styles.graph_select} name="first_vertex">
-              <option value="Earth"> Earth </option>
-              <option value="Mars"> Mars </option>
-              <option value="Venus"> Venus </option>
-            </select>
-            <span> = </span>
-            <input
-              type="text"
-              id={styles.firstEdge}
-              className={styles.graph_value}
-              name="firstEdge"
-              value="15"
-            />
-          </label>
-          <input type="button" className={styles.graph_save} value="Save" />
-        </form>
-        <form className={styles.graph_form}>
-          <label htmlFor="fourth_vertex" className={styles.graph_label}>
-            4th_Edge
-            <select className={styles.graph_select} name="forth_vertex">
-              <option value="Earth"> Earth </option>
-              <option value="Mars"> Mars </option>
-              <option value="Venus"> Venus </option>
-            </select>
-            <span> to </span>
-            <select className={styles.graph_select} name="first_vertex">
-              <option value="Earth"> Earth </option>
-              <option value="Mars"> Mars </option>
-              <option value="Venus"> Venus </option>
-            </select>
-            <span> = </span>
-            <input
-              type="text"
-              id={styles.firstEdge}
-              className={styles.graph_value}
-              name="firstEdge"
-              value="15"
-            />
-          </label>
-          <input type="button" className={styles.graph_save} value="Save" />
-        </form>
+        <div className={styles.title}>
+          | Graph Data |
+          <div className={styles.log_panel}>
+            <div className={styles.log_label}> Storyboard </div>
+            <div className={styles.storyboard}>
+              {/* <div className={styles.display_panel}>
+          <div> MoonX </div>
+          <textarea className={styles.display}> </textarea>
+          <button type="button" className={styles.log}>
+            Log
+          </button>
+        </div> */}
+            </div>
+          </div>
+        </div>
+        <div className={styles.graph_panel}>
+          <div className={styles.graph_panel_label}> Routes </div>
+          <form className={styles.graph_form} id="form">
+            <label htmlFor="first_vertex" className={styles.graph_label}>
+              1st_Edge
+              <select className={styles.graph_select} name="first_vertex">
+                <option value="Earth"> Earth </option>
+                <option value="Mars"> Mars </option>
+                <option value="Venus"> Venus </option>
+              </select>
+              <span> to </span>
+              <select className={styles.graph_select} name="first_vertex">
+                <option value="Earth"> Earth </option>
+                <option value="Mars"> Mars </option>
+                <option value="Venus"> Venus </option>
+              </select>
+              <span> = </span>
+              <input
+                type="text"
+                id={styles.firstEdge}
+                className={styles.graph_value}
+                name="firstEdge"
+                value="15"
+              />
+            </label>
+            <input type="button" className={styles.graph_save} value="Save" />
+          </form>
+          <form className={styles.graph_form}>
+            <label htmlFor="second_vertex" className={styles.graph_label}>
+              2nd_Edge
+              <select className={styles.graph_select} name="second_vertex">
+                <option value="Earth"> Earth </option>
+                <option value="Mars"> Mars </option>
+                <option value="Venus"> Venus </option>
+              </select>
+              <span> to </span>
+              <select className={styles.graph_select} name="first_vertex">
+                <option value="Earth"> Earth </option>
+                <option value="Mars"> Mars </option>
+                <option value="Venus"> Venus </option>
+              </select>
+              <span> = </span>
+              <input
+                type="text"
+                id={styles.firstEdge}
+                className={styles.graph_value}
+                name="firstEdge"
+                value="15"
+              />
+            </label>
+            <input type="button" className={styles.graph_save} value="Save" />
+          </form>
+          <form className={styles.graph_form}>
+            <label htmlFor="third_vertex" className={styles.graph_label}>
+              3rd_Edge
+              <select className={styles.graph_select} name="third_vertex">
+                <option value="Earth"> Earth </option>
+                <option value="Mars"> Mars </option>
+                <option value="Venus"> Venus </option>
+              </select>
+              <span> to </span>
+              <select className={styles.graph_select} name="first_vertex">
+                <option value="Earth"> Earth </option>
+                <option value="Mars"> Mars </option>
+                <option value="Venus"> Venus </option>
+              </select>
+              <span> = </span>
+              <input
+                type="text"
+                id={styles.firstEdge}
+                className={styles.graph_value}
+                name="firstEdge"
+                value="15"
+              />
+            </label>
+            <input type="button" className={styles.graph_save} value="Save" />
+          </form>
+          <form className={styles.graph_form}>
+            <label htmlFor="fourth_vertex" className={styles.graph_label}>
+              4th_Edge
+              <select className={styles.graph_select} name="forth_vertex">
+                <option value="Earth"> Earth </option>
+                <option value="Mars"> Mars </option>
+                <option value="Venus"> Venus </option>
+              </select>
+              <span> to </span>
+              <select className={styles.graph_select} name="first_vertex">
+                <option value="Earth"> Earth </option>
+                <option value="Mars"> Mars </option>
+                <option value="Venus"> Venus </option>
+              </select>
+              <span> = </span>
+              <input
+                type="text"
+                id={styles.firstEdge}
+                className={styles.graph_value}
+                name="firstEdge"
+                value="15"
+              />
+            </label>
+            <input type="button" className={styles.graph_save} value="Save" />
+          </form>
+        </div>
       </div>
       <div className={styles.backButton} data-tid="backButton">
         <Link to={routes.SELECTION}>

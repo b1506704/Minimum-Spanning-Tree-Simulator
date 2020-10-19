@@ -7,7 +7,7 @@ export default function Home(): JSX.Element {
   return (
     <div className={styles.container} data-tid="container">
       <div id="stars" />
-      <div id="stars2" />
+      <div id="star2" />
       <div id="stars3" />
       <div className="title">
         <span>Minimum Spanning Tree</span>

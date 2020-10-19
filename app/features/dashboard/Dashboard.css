@@ -14,7 +14,7 @@
   justify-content: center;
   animation: showPage 1.25s 1 linear forwards;
 }
-
+/* ---------------------------------TOP PANEL-------------------------------*/
 .top {
   position: absolute;
   font-family: Sci-fi;
@@ -104,7 +104,7 @@
   margin-left: 5px;
   width: 200px;
 }
-
+/* ---------------------------------BOTTOM PANEL-------------------------------*/
 .bottom {
   position: fixed;
   font-family: Sci-fi;
@@ -156,9 +156,49 @@
   position: sticky;
   top: 0;
   z-index: 3;
+  height: 50px;
   opacity: inherit;
   background: inherit;
   backdrop-filter: blur(3.5px);
+}
+.bottom .log_panel {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  left: 52%;
+  top: 0;
+  width: 48%;
+  height: 350px;
+  background: transparent;
+}
+.bottom .log_panel .log_label {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  right: 0px;
+  font-size: 35px;
+}
+
+.bottom .log_panel .storyboard {
+  position: relative;
+  right: 0;
+  height: auto;
+}
+.bottom .graph_panel {
+  position: relative;
+  left: 0px;
+  height: auto;
+  width: 52%;
+  border-right: 1px ridge rgb(2, 2, 2);
+  overflow: hidden;
+  /* font-size: 20px; */
+}
+.bottom .graph_panel .graph_panel_label {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  left: 0px;
+  font-size: 35px;
 }
 .bottom .graph_form {
   position: relative;
@@ -181,6 +221,7 @@
   border: 3px ridge rgb(4, 250, 217);
   z-index: 1;
 }
+
 .bottom .graph_form:hover::after {
   content: '';
   bottom: 0px;
@@ -196,6 +237,7 @@
   animation-timing-function: ease-in-out;
   background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(139, 180, 241, 0.541) 25%, rgb(228, 240, 231) 50%, rgba(181, 250, 194, 0.541) 75%, rgba(128, 186, 232, 0) 99%, rgba(125, 185, 232, 0) 100%);
 }
+
 .bottom .graph_form .graph_label {
   font-family: Outerspace;
 }
@@ -212,6 +254,10 @@
   margin-right: 15px;
   box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
   transition: all 0.25s ease-in-out;
+}
+
+.bottom .graph_form select option {
+  background-color: rgb(66, 218, 197);
 }
 .bottom .graph_form select:focus {
   transform: scale(1.15);
@@ -263,6 +309,11 @@
   background: #f5bbbb;
   border: 3px solid rgb(81, 188, 214);
 }
+
+
+
+
+
 .backButton {
   position: fixed;
   padding: 15px;

@@ -1,0 +1,12 @@
+.container {
+  font-size: 50px;
+  padding: auto;
+  position: absolute;
+  /* z-index: ; */
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  backdrop-filter: blur(8px);
+  background-color:  transparent;
+  color: #4997bb;
+}
