@@ -60,6 +60,9 @@ CHECKED - https://tympanus.net/codrops/2014/02/26/creating-a-border-animation-ef
 - CHECKED https://codepen.io/milanraring/pen/KKwRBQp
 - CHECKED https://codepen.io/marcusconnor/pen/QJNvMa
 - CHECKED https://codepen.io/Wujek_Greg/pen/Bqvzbp
+- CHECKED https://codepen.io/mccombsc/pen/ZEzxWPy
+- https://codepen.io/lbebber/pen/LELBEo
+- CHECKED https://codepen.io/Anna_Batura/pen/KrGLwA
 9. GRAPH:
 - CHECKED https://js.cytoscape.org/
 10. LazyLoad:

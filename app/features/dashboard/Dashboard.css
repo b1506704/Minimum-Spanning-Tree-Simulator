@@ -1,3 +1,4 @@
+/* ---------------------------------BACKGROUND-------------------------------*/
 .background {
   position: absolute;
   height: 100%;
@@ -13,356 +14,6 @@
   flex-wrap: no-wrap;
   justify-content: center;
   animation: showPage 1.25s 1 linear forwards;
-}
-/* ---------------------------------TOP PANEL-------------------------------*/
-.top {
-  position: absolute;
-  font-family: Sci-fi;
-  color: #f3f4f5;
-  opacity: 0.5;
-  background: rgb(66, 218, 197, 0.65);
-  font-size: 40px;
-  margin: 0;
-  font-weight: 40px;
-  width: 35%;
-  height: 200px;
-  top: -120px;
-  border-bottom-right-radius: 100%;
-  border-bottom-left-radius: 100%;
-  border: null;
-  padding: 20px;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #daa0f1;
-  left: auto;
-  overflow: hidden;
-  backdrop-filter: blur(5px);
-  user-select: none;
-  transition: all ease-in-out 0.45s;
-}
-
-.top::after {
-  content: '';
-  top: 0;
-  transform: translateX(100%);
-  width: 100%;
-  height: 200px;
-  position: absolute;
-  z-index: 1;
-  animation-name: slide;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-delay: 3s;
-  animation-timing-function: linear;
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(165, 245, 180, 0.541) 25%, rgb(228, 240, 231) 50%, rgba(181, 250, 194, 0.541) 75%, rgba(128, 186, 232, 0) 99%, rgba(125, 185, 232, 0) 100%);
-}
-
-.top:hover {
-  transform: translateY(120px);
-  opacity: 1;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
-}
-
-.top button {
-  position: relative;
-  margin-top: 10px;
-  height: 85px;
-  width: 85px;
-  margin-left: 10px;
-  background: #E53030;
-  border: 4px ridge rgb(54, 183, 192);
-  border-radius: 100%;
-  box-shadow: 0 -2px 0 3px #c91919 inset, 0 5px 5px rgba(65, 8, 8, 0.17), 0 15px rgba(255, 255, 255, 0.25) inset;
-  color: rgb(234, 210, 240);
-  font-family: Outerspace;
-  transition: hover 0.5s ease-in-out;
-  transition: active 0.5s ease-in-out;
-}
-
-.top button:hover {
-  z-index: 2;
-  color: rgb(2, 2, 2);
-  background: #f5bbbb;
-}
-
-.top button:active {
-  color: rgb(2, 2, 2);
-  transform: translateY(5px);
-  background: #f5bbbb;
-  border: 3px solid rgb(81, 188, 214);
-}
-
-.top .display_panel {
-  position: absolute;
-  width: 450px;
-  height: 250px;
-  background: transparent;
-  left: 60px;
-  padding: 10px;
-}
-
-.top .display_panel .display {
-  position: relative;
-  margin-left: 5px;
-  width: 200px;
-}
-/* ---------------------------------BOTTOM PANEL-------------------------------*/
-.bottom {
-  position: fixed;
-  font-family: Sci-fi;
-  color: #f3f4f5;
-  opacity: 0.5;
-  overflow-y: auto;
-  overflow-x: hidden;
-  background: rgb(66, 218, 197, 0.65);
-  backdrop-filter: blur(5px);
-  font-size: 40px;
-  margin: 0;
-  padding: 0px;
-  font-weight: 40px;
-  width: 100%;
-  height: 350px;
-  bottom: -200px;
-  left: auto;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
-  user-select: none;
-  transition: all ease-in-out 0.65s;
-}
-
-.bottom::after {
-  content: '';
-  bottom: 0px;
-  transform: translateX(100%);
-  width: 100%;
-  height: 1500px;
-  position: absolute;
-  z-index: 3;
-  animation-name: slide;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-  animation-delay: 2s;
-  animation-timing-function: ease-in-out;
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(165, 245, 180, 0.541) 25%, rgb(228, 240, 231) 50%, rgba(181, 250, 194, 0.541) 75%, rgba(128, 186, 232, 0) 99%, rgba(125, 185, 232, 0) 100%);
-}
-
-.bottom:hover {
-  opacity: 1;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
-  transform: translateY(-200px);
-}
-.bottom:hover::after{
-  background: transparent;
-  animation: null;
-}
-.bottom .title {
-  position: sticky;
-  top: 0;
-  z-index: 3;
-  height: 50px;
-  opacity: inherit;
-  background: inherit;
-  backdrop-filter: blur(3.5px);
-}
-.bottom .log_panel {
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  left: 52%;
-  top: 0;
-  width: 48%;
-  height: 350px;
-  background: transparent;
-}
-.bottom .log_panel .log_label {
-  position: relative;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  right: 0px;
-  font-size: 35px;
-}
-
-.bottom .log_panel .storyboard {
-  position: relative;
-  right: 0;
-  height: auto;
-}
-.bottom .graph_panel {
-  position: relative;
-  left: 0px;
-  height: auto;
-  width: 52%;
-  border-right: 1px ridge rgb(2, 2, 2);
-  overflow: hidden;
-  /* font-size: 20px; */
-}
-.bottom .graph_panel .graph_panel_label {
-  position: relative;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  left: 0px;
-  font-size: 35px;
-}
-.bottom .graph_form {
-  position: relative;
-  left: -95px;
-  margin-top: 15px;
-  font-family: Sci-fi;
-  padding: 25px;
-  font-size: 20px;
-  border-radius: 10px;
-  width: 700px;
-  height: 150px;
-  overflow: hidden;
-  transition: all ease-in-out 0.35s;
-}
-.bottom .graph_form:hover {
-  color: #020202;
-  background:rgb(66, 218, 198);
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
-  transform: translateX(90px);
-  border: 3px ridge rgb(4, 250, 217);
-  z-index: 1;
-}
-
-.bottom .graph_form:hover::after {
-  content: '';
-  bottom: 0px;
-  transform: translateX(100%);
-  width: 100%;
-  height: 1500px;
-  position: absolute;
-  z-index: -1;
-  animation-name: slide;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-delay: 0.5s;
-  animation-timing-function: ease-in-out;
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(139, 180, 241, 0.541) 25%, rgb(228, 240, 231) 50%, rgba(181, 250, 194, 0.541) 75%, rgba(128, 186, 232, 0) 99%, rgba(125, 185, 232, 0) 100%);
-}
-
-.bottom .graph_form .graph_label {
-  font-family: Outerspace;
-}
-.bottom .graph_form select {
-  margin-left: 15px;
-  font-family: Outerspace;
-  border: 1px rgb(233, 175, 238) ridge;
-  border-radius: 100%;
-  background: transparent;
-  color: #000000;
-  height: 100px;
-  width: 100px;
-  padding: 20px;
-  margin-right: 15px;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
-  transition: all 0.25s ease-in-out;
-}
-
-.bottom .graph_form select option {
-  background-color: rgb(66, 218, 197);
-}
-.bottom .graph_form select:focus {
-  transform: scale(1.15);
-  border: transparent;
-}
-.bottom .graph_form span {
-  margin-right: 5px;
-}
-.bottom .graph_form input {
-  margin-left: 15px;
-}
-.bottom .graph_form input[type="text"] {
-  height: 65px;
-  width: 65px;
-  border-radius: 100%;
-  background: transparent;
-  color: #000000;
-  padding: 20px;
-  border: 1px rgb(233, 175, 238) ridge;
-  font-family: Sci-fi;
-  font-size: 20px;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
-  transition: all 0.25s ease-in-out;
-}
-.bottom .graph_form input[type="text"]:focus {
-  transform: scale(1.15);
-  border: transparent;
-}
-.bottom .graph_form input[type="button"] {
-  height: 85px;
-  width: 85px;
-  margin-left: 45px;
-  background: #E53030;
-  border: 4px ridge rgb(54, 183, 192);
-  border-radius: 100%;
-  box-shadow: 0 -2px 0 3px #c91919 inset, 0 5px 5px rgba(65, 8, 8, 0.17), 0 15px rgba(255, 255, 255, 0.25) inset;
-  color: rgb(234, 210, 240);
-  font-family: Outerspace;
-  transition: hover 0.5s ease-in-out;
-  transition: active 0.5s ease-in-out;
-}
-.bottom .graph_form input[type="button"]:hover {
-  color: rgb(2, 2, 2);
-  background: #f5bbbb;
-}
-.bottom .graph_form input[type="button"]:active {
-  color: rgb(2, 2, 2);
-  transform: translateY(5px);
-  background: #f5bbbb;
-  border: 3px solid rgb(81, 188, 214);
-}
-
-
-
-
-
-.backButton {
-  position: fixed;
-  padding: 15px;
-  opacity: 0.25;
-  background: #2c3e50;
-  border-radius: 40px;
-  box-shadow: inset 0 0 0 3px #7be2e2;
-  left: 10px;
-  transition: all linear 0.25s;
-}
-
-.backButton:hover {
-  margin-left: 20px;
-  opacity: 1;
-  transform: scale(1.25);
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0073e6, 0 0 40px #0073e6, 0 0 50px #0073e6, 0 0 60px #0073e6, 0 0 70px #0073e6;
-  background: transparent;
-}
-
-.engine {
-  position: fixed;
-  opacity: 0.25;
-  right: 25px;
-  background: hotpink;
-  color: #000;
-  height: 100px;
-  width: 100px;
-  border-radius: 100px;
-  text-align: center;
-  padding: 50px;
-  font-family: Outerspace;
-  font-size: 25px;
-  transition: all 0.5s ease-in-out;
-}
-
-.engine:hover {
-  transform: scale(1.25);
-  box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0073e6, 0 0 40px #0073e6, 0 0 50px #0073e6, 0 0 60px #0073e6, 0 0 70px #0073e6;
-  opacity: 1;
-}
-
-.map {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: transparent;
-  color: rgb(70, 255, 199);
-  text-align: center;
-  z-index: -1;
 }
 
 .stars,
@@ -387,12 +38,64 @@
   background: transparent url("../../images/twinkling.png") repeat top center;
   animation: move-twink-back 200s linear infinite;
 }
+
 ::-webkit-scrollbar {
   width: 0px;
 }
 
+.galaxy {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  color: rgb(70, 255, 199);
+  z-index: -1;
+}
+
+
+
+/* ---------------------------------TOP PANEL-------------------------------*/
+
+/* ---------------------------------BOTTOM PANEL-------------------------------*/
+
+/* ---------------------------------LEFT PANEL-------------------------------*/
+
+
+
+.backButton {
+  position: fixed;
+  padding: 15px;
+  opacity: 0.25;
+  background: #2c3e50;
+  border-radius: 40px;
+  box-shadow: inset 0 0 0 3px #7be2e2;
+  left: 10px;
+  transition: all linear 0.25s;
+}
+
+.backButton:hover {
+  margin-left: 20px;
+  opacity: 1;
+  transform: scale(1.25);
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0073e6, 0 0 40px #0073e6, 0 0 50px #0073e6, 0 0 60px #0073e6, 0 0 70px #0073e6;
+  background: transparent;
+}
+
+
+
+/* ---------------------------------RIGHT PANEL-------------------------------*/
+
+
+
+
+
+
+
 
 /* ---------------------------------KEYFRAMES-------------------------------*/
+
+
+
 @keyframes move-twink-back {
   from {
     background-position: 0 0;

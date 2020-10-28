@@ -1,0 +1,92 @@
+.top {
+  position: absolute;
+  font-family: Sci-fi;
+  color: #fff;
+  opacity: 0.5;
+  background: #2c3e507c;
+  font-size: 40px;
+  margin: 0;
+  font-weight: 40px;
+  width: 35%;
+  height: 200px;
+  top: -120px;
+  border-bottom-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+  border: null;
+  padding: 20px;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #daa0f1;
+  left: auto;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  user-select: none;
+  transition: all ease-in-out 0.65s;
+}
+
+.top::after {
+  content: '';
+  top: 0;
+  transform: translateX(100%);
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  z-index: -1;
+  animation-name: slide;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-delay: 3s;
+  animation-timing-function: linear;
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(165, 245, 180, 0.541) 25%, rgb(228, 240, 231) 50%, rgba(181, 250, 194, 0.541) 75%, rgba(128, 186, 232, 0) 99%, rgba(125, 185, 232, 0) 100%);
+}
+
+.top:hover {
+  transform: translateY(120px);
+  /* color: #fff; */
+  /* text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a; */
+  opacity: 1;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
+}
+
+.top button {
+  position: relative;
+  margin-top: 10px;
+  height: 85px;
+  width: 85px;
+  margin-left: 10px;
+  background: #2e0a0a;
+  border: 4px ridge rgb(54, 183, 192);
+  border-radius: 100%;
+  box-shadow: 0 -2px 0 5px #5c0c0c inset, 0 5px 5px rgba(65, 8, 8, 0.17), 0 15px rgba(255, 255, 255, 0.25) inset;
+  color: rgb(234, 210, 240);
+  font-family: Outerspace;
+  transition: hover 0.5s ease-in-out;
+}
+
+.top button:hover {
+  z-index: 2;
+  color: rgb(2, 2, 2);
+  background: #f5bbbb;
+}
+
+.top button:active {
+  color: rgb(2, 2, 2);
+  transform: translateY(5px);
+  box-shadow: 0 -2px 0 2px #5c0c0c inset, 0 5px 5px rgba(65, 8, 8, 0.17), 0 15px rgba(255, 255, 255, 0.25) inset;
+  background: #f5bbbb;
+  border: 3px solid rgb(81, 188, 214);
+}
+
+
+
+@keyframes slide {
+  0% {
+    transform: translateX(-150%);
+  }
+
+  40% {
+    transform: translateX(150%);
+  }
+
+  100% {
+    transform: translateX(300%);
+  }
+}
