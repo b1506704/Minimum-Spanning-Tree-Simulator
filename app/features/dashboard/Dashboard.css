@@ -6,7 +6,7 @@
   filter: blur(15px);
   background: #2c3e5000;
   font-family: Outerspace;
-  text-align: center;
+  /* text-align: center; */
   /* to center item vertically and horizontally*/
   display: flex;
   align-items: center;
@@ -16,51 +16,11 @@
   animation: showPage 1.25s 1 linear forwards;
 }
 
-.stars,
-.twinkling {
-  position: absolute;
-  display: block;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.stars {
-  z-index: -1;
-  background: #000 url("../../images/stars.png") repeat top center;
-}
-
-.twinkling {
-  z-index: 0;
-  background: transparent url("../../images/twinkling.png") repeat top center;
-  animation: move-twink-back 200s linear infinite;
-}
-
 ::-webkit-scrollbar {
   width: 0px;
 }
 
-.galaxy {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: transparent;
-  color: rgb(70, 255, 199);
-  z-index: -1;
-}
-
-
-
-/* ---------------------------------TOP PANEL-------------------------------*/
-
-/* ---------------------------------BOTTOM PANEL-------------------------------*/
-
 /* ---------------------------------LEFT PANEL-------------------------------*/
-
-
 
 .backButton {
   position: fixed;
@@ -81,30 +41,7 @@
   background: transparent;
 }
 
-
-
-/* ---------------------------------RIGHT PANEL-------------------------------*/
-
-
-
-
-
-
-
-
 /* ---------------------------------KEYFRAMES-------------------------------*/
-
-
-
-@keyframes move-twink-back {
-  from {
-    background-position: 0 0;
-  }
-
-  to {
-    background-position: -10000px 5000px;
-  }
-}
 
 @keyframes slide {
   0% {

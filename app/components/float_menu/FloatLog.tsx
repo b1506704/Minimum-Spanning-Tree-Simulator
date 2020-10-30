@@ -1,8 +1,8 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import styles from './FloatMenu.css';
+import styles from './FloatLog.css';
 
-export default function FloatMenu() {
+export default function FloatLog() {
   function exit() {
     window.close();
   }

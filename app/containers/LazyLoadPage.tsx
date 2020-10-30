@@ -1,5 +1,5 @@
 import React from 'react';
-import LazyLoad from '../features/lazyload/LazyLoad';
+import LazyLoad from '../components/lazyload/LazyLoad';
 
 export default function DashboardPage() {
   return <LazyLoad />;

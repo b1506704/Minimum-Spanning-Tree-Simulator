@@ -5,6 +5,7 @@
   opacity: 0.5;
   background: #2c3e507c;
   font-size: 40px;
+  text-align: center;
   margin: 0;
   font-weight: 40px;
   width: 35%;
@@ -54,13 +55,15 @@
   margin-left: 10px;
   background: #2e0a0a;
   border: 4px ridge rgb(54, 183, 192);
+  font-size: 25px;
   border-radius: 100%;
   box-shadow: 0 -2px 0 5px #5c0c0c inset, 0 5px 5px rgba(65, 8, 8, 0.17), 0 15px rgba(255, 255, 255, 0.25) inset;
   color: rgb(234, 210, 240);
-  font-family: Outerspace;
   transition: hover 0.5s ease-in-out;
 }
-
+.top button::before {
+  font-family: power_symbols;
+}
 .top button:hover {
   z-index: 2;
   color: rgb(2, 2, 2);

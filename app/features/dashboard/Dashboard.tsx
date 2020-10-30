@@ -5,7 +5,6 @@ import styles from './Dashboard.css';
 import routes from '../../constants/routes.json';
 import TopPanel from '../../containers/TopPanel';
 import BottomPanel from '../../containers/BottomPanel';
-// import FloatPanel from '../../containers/FloatPanel';
 import GraphPanel from '../../containers/GraphPanel';
 // import {
 //   selectCount,
@@ -24,9 +23,6 @@ export default function Dashboard() {
   // }
   return (
     <div className={styles.background}>
-      <div className={styles.stars} />
-      <div className={styles.twinkling} />
-      {/* <FloatPanel /> */}
       <TopPanel />
       <BottomPanel />
       <div className={styles.backButton} data-tid="backButton">

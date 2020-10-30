@@ -6,13 +6,13 @@ export default function TopMenu() {
     <div className={styles.top}>
       <div>| Engine |</div>
       <button type="button" className={styles.start}>
-        Start
+        &#x25B6;
       </button>
       <button type="button" className={styles.pause}>
-        Pause
+        &#x23F8;
       </button>
       <button type="button" className={styles.dash}>
-        Dash
+        &#x23ED;
       </button>
     </div>
   );

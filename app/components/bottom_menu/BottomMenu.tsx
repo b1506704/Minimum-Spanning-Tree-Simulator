@@ -93,7 +93,11 @@ export default function BottomMenu() {
               value="15"
             />
           </label>
-          <input type="button" className={styles.graph_save} value="Save" />
+          <input
+            type="button"
+            className={styles.graph_save}
+            value="&#x1F5AB;"
+          />
           <span className={styles.graph_no}> Edge 1 </span>
         </form>
         <form className={styles.graph_form}>
@@ -119,7 +123,11 @@ export default function BottomMenu() {
               value="15"
             />
           </label>
-          <input type="button" className={styles.graph_save} value="Save" />
+          <input
+            type="button"
+            className={styles.graph_save}
+            value="&#x1F5AB;"
+          />
           <span className={styles.graph_no}> Edge 2 </span>
         </form>
         <form className={styles.graph_form}>
@@ -145,7 +153,11 @@ export default function BottomMenu() {
               value="15"
             />
           </label>
-          <input type="button" className={styles.graph_save} value="Save" />
+          <input
+            type="button"
+            className={styles.graph_save}
+            value="&#x1F5AB;"
+          />
           <span className={styles.graph_no}> Edge 3 </span>
         </form>
         <form className={styles.graph_form}>
@@ -171,7 +183,11 @@ export default function BottomMenu() {
               value="15"
             />
           </label>
-          <input type="button" className={styles.graph_save} value="Save" />
+          <input
+            type="button"
+            className={styles.graph_save}
+            value="&#x1F5AB;"
+          />
           <span className={styles.graph_no}> Edge 4 </span>
         </form>
       </div>

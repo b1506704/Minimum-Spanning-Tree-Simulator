@@ -5,7 +5,7 @@ import routes from './constants/routes.json';
 import App from './containers/App';
 import HomePage from './containers/HomePage';
 import LazyLoadPage from './containers/LazyLoadPage';
-import FloatPanel from './containers/FloatPanel';
+import FloatMenuPanel from './containers/FloatMenuPanel';
 // Lazily load routes and code split with webpack
 const LazySelectionPage = React.lazy(async () => {
   await new Promise((resolve) => setTimeout(resolve, 5000));
@@ -37,7 +37,7 @@ const DashboardPage = (props: Record<string, unknown>) => (
 export default function Routes() {
   return (
     <App>
-      <FloatPanel />
+      <FloatMenuPanel />
       <Switch>
         <Route path={routes.SELECTION} component={SelectionPage} />
         <Route path={routes.DASHBOARD} component={DashboardPage} />
