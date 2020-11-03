@@ -8,7 +8,7 @@ export default function Graph() {
   const { layout } = eles;
   const { elements } = eles;
   const { stylesheet } = eles;
-  let cyCallBack = {};
+  let cyCallBack: cytoscape.Core;
   const nodeID = 'n1';
   const preNodeID = 'n0';
   const W = 0;
@@ -63,7 +63,7 @@ export default function Graph() {
         zoom={0.5}
         // eslint-disable-next-line no-return-assign
         cy={(cy) => (cyCallBack = cy)}
-        wheelSensitivity={0.05}
+        // wheelSensitivity={0.05}
       >
         {' '}
       </CytoscapeComponent>
