@@ -1,173 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CytoscapeComponent from 'react-cytoscapejs';
 import styles from './Graph.css';
+// import mst from '../../features/mst_algorithm/mst';
+import * as eles from '../../features/mst_algorithm/eles';
 
 export default function Graph() {
-  const stylesheet = [
-    {
-      selector: 'node',
-      style: {
-        content: 'data(label)',
-        'background-color': 'rgba(60, 225, 231, 0.671)',
-        'border-style': 'double',
-        'border-width': '2',
-        'border-color': 'rgba(60, 225, 231, 1)',
-        'text-margin-y': '-10',
-        'text-halign': 'center',
-        // 'text-valign': 'top',
-        'font-family': 'Outerspace',
-        'font-size': '20',
-        color: 'green',
-        height: '35',
-        width: '35',
+  const { layout } = eles;
+  const { elements } = eles;
+  const { stylesheet } = eles;
+  let cyCallBack = {};
+  const nodeID = 'n1';
+  const preNodeID = 'n0';
+  const W = 0;
+  function onNodeClickHandler() {
+    // W += 10;
+    cyCallBack.add([
+      { group: 'nodes', data: { id: preNodeID, label: preNodeID } },
+      { group: 'nodes', data: { id: nodeID, label: nodeID } },
+      {
+        group: 'edges',
+        data: {
+          id: 'ei',
+          source: preNodeID,
+          target: nodeID,
+          weight: W + 10,
+          label: nodeID,
+        },
       },
-    },
-  ];
-  const layout = {
-    name: 'breadthfirst',
-  };
-  const elements = [
-    {
-      data: { id: 'one', label: 'Earth' },
-      position: { x: 0, y: 0 },
-    },
-    {
-      data: { id: 'two', label: 'Mars' },
-      position: { x: 0, y: 0 },
-    },
-    {
-      data: { id: 'three', label: 'Venus' },
-      position: { x: 0, y: 0 },
-    },
-    {
-      data: { id: 'four', label: 'Mercury' },
-      position: { x: 0, y: 0 },
-    },
-    {
-      data: { id: 'five', label: 'Jubiter' },
-      position: { x: 0, y: 0 },
-    },
-    {
-      data: { id: 'six', label: 'Saturn' },
-      position: { x: 0, y: 0 },
-    },
-    {
-      data: { id: 'seven', label: 'Uranus' },
-      position: { x: 0, y: 0 },
-    },
-    {
-      data: { id: 'eight', label: 'Neptune' },
-      position: { x: 0, y: 0 },
-    },
-    {
-      data: { id: 'nine', label: 'Sun' },
-      position: { x: 0, y: 0 },
-    },
-    {
-      data: {
-        source: 'one',
-        target: 'two',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge1',
+      {
+        group: 'edges',
+        data: {
+          id: 'e1',
+          source: preNodeID,
+          target: 'three',
+          weight: W + 20,
+          label: nodeID,
+        },
       },
-    },
-    {
-      data: {
-        source: 'two',
-        target: 'three',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge2',
-      },
-    },
-    {
-      data: {
-        source: 'two',
-        target: 'four',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge3',
-      },
-    },
-    {
-      data: {
-        source: 'two',
-        target: 'five',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge4',
-      },
-    },
-    {
-      data: {
-        source: 'three',
-        target: 'five',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge5',
-      },
-    },
-    {
-      data: {
-        source: 'five',
-        target: 'six',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge6',
-      },
-    },
-    {
-      data: {
-        source: 'six',
-        target: 'two',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge7',
-      },
-    },
-    {
-      data: {
-        source: 'one',
-        target: 'three',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge8',
-      },
-    },
-    {
-      data: {
-        source: 'three',
-        target: 'seven',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge9',
-      },
-    },
-    {
-      data: {
-        source: 'two',
-        target: 'eight',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge10',
-      },
-    },
-    {
-      data: {
-        source: 'four',
-        target: 'nine',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge11',
-      },
-    },
-    {
-      data: {
-        source: 'five',
-        target: 'nine',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge12',
-      },
-    },
-    {
-      data: {
-        source: 'one',
-        target: 'nine',
-        label: 'Edge from Node1 to Node2',
-        id: 'edge13',
-      },
-    },
-  ];
+    ]);
+    cyCallBack.layout(layout).run();
+    cyCallBack.filter('edge[id = "edge9"]').select();
+  }
+  function onEdgeClickHandler() {
+    cyCallBack.getElementById('nine').remove();
+    cyCallBack.layout(layout).run();
+  }
+  useEffect(() => {
+    cyCallBack.on('tap', 'node', onNodeClickHandler);
+    cyCallBack.on('tap', 'edge', onEdgeClickHandler);
+  });
   return (
     <div className={styles.galaxy}>
       <div className={styles.stars} />
@@ -179,8 +60,10 @@ export default function Graph() {
         stylesheet={stylesheet}
         minZoom={0.5}
         maxZoom={2}
-        zoom={1}
-        wheelSensitivity={0.1}
+        zoom={0.5}
+        // eslint-disable-next-line no-return-assign
+        cy={(cy) => (cyCallBack = cy)}
+        wheelSensitivity={0.05}
       >
         {' '}
       </CytoscapeComponent>

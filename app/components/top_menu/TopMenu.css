@@ -10,7 +10,7 @@
   font-weight: 40px;
   width: 35%;
   height: 200px;
-  top: -120px;
+  top: -140px;
   border-bottom-right-radius: 100%;
   border-bottom-left-radius: 100%;
   border: null;
@@ -40,7 +40,7 @@
 }
 
 .top:hover {
-  transform: translateY(120px);
+  transform: translateY(140px);
   /* color: #fff; */
   /* text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a; */
   opacity: 1;
@@ -50,6 +50,7 @@
 .top button {
   position: relative;
   margin-top: 10px;
+  margin-bottom: 10px;
   height: 85px;
   width: 85px;
   margin-left: 10px;

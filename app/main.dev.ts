@@ -82,6 +82,7 @@ const createWindow = async () => {
             preload: path.join(__dirname, 'dist/renderer.prod.js'),
           },
   });
+  mainWindow.webContents.setFrameRate(60);
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 

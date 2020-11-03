@@ -14,7 +14,7 @@
   font-weight: 40px;
   width: 100%;
   height: 350px;
-  bottom: -200px;
+  bottom: -300px;
   left: auto;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
   user-select: none;
@@ -40,7 +40,7 @@
 .bottom:hover {
   opacity: 1;
   box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
-  transform: translateY(-200px);
+  transform: translateY(-300px);
 }
 
 .bottom:hover::after {

@@ -35,16 +35,7 @@
   padding: 0px;
   background: transparent;
 }
-.node {
-  height: 100px;
-  width: 100px;
-  border-radius: 100%;
-  color: #0073e6;
-  background: rgba(60, 225, 231, 0.671);
-}
-.graph .edge {
-  background: #0073e6;
-}
+
 @keyframes move-twink-back {
   from {
     background-position: 0 0;
