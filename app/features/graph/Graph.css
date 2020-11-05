@@ -20,19 +20,19 @@
 
 .galaxy .stars {
   z-index: -2;
-  background: #000 url("../../images/stars.png") repeat top center;
+  background: #000 url('../../images/stars.png') repeat top center;
 }
 
 .galaxy .twinkling {
   z-index: -1;
-  background: transparent url("../../images/twinkling.png") repeat top center;
+  background: transparent url('../../images/twinkling.png') repeat top center;
   animation: move-twink-back 200s linear infinite;
 }
 .graph {
   position: absolute;
   height: 100%;
   width: 100%;
-  padding: 0px;
+  padding: 0;
   background: transparent;
 }
 
