@@ -1,78 +1,79 @@
-/* eslint-disable no-alert */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from 'react';
 import CytoscapeComponent from 'react-cytoscapejs';
-import { useSelector, shallowEqual } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './Graph.css';
+import {
+  buttonClick,
+  getButtonState,
+} from '../../components/top_menu/buttonSlice';
 import * as mst from '../mst_algorithm/mst';
 import * as eles from '../mst_algorithm/eles';
+// import { getNodeID, getNodeLabel } from './nodeSlice';
+// import { getButtonState } from '../../components/top_menu/buttonSlice';
 import {
-  getNodeID,
-  getNodeLabel,
   getEdgeID,
   getEdgeSource,
   getEdgeTarget,
   getEdgeWeight,
-} from './graphSlice';
+} from './edgeSlice';
 
 export default function Graph() {
-  const newNodeID = useSelector(getNodeID, shallowEqual);
-  const newNodeLabel = useSelector(getNodeLabel, shallowEqual);
-  const newEdgeID = useSelector(getEdgeID, shallowEqual);
-  const newEdgeSource = useSelector(getEdgeSource, shallowEqual);
-  const newEdgeTarget = useSelector(getEdgeTarget, shallowEqual);
-  const newEdgeWeight = useSelector(getEdgeWeight, shallowEqual);
+  const dispatch = useDispatch();
   const { layout } = eles;
   const { elements } = eles;
   const { stylesheet } = eles;
   function handleException(_error: string) {
-    alert(_error + newNodeID + newNodeLabel);
+    return _error;
   }
   let cyCallBack: cytoscape.Core;
-  function CustomRender() {
-    mst.AddNode(cyCallBack, newNodeID, newNodeLabel);
-    // check for random id remove
-    mst.RemoveElement(cyCallBack, newEdgeID);
-    mst.AddNode(cyCallBack, newNodeID, newNodeLabel);
-    mst.AddEdge(
-      cyCallBack,
-      newEdgeID,
-      newEdgeSource,
-      newEdgeTarget,
-      newEdgeWeight
-    );
-    cyCallBack.layout(layout).run();
-  }
-  function onNodeClickHandler() {
-    // try {
-    //   mst.AddNode(cyCallBack, newNodeID, newNodeLabel);
-    //   mst.AddEdge(
-    //     cyCallBack,
-    //     newEdgeID,
-    //     newEdgeSource,
-    //     newEdgeTarget,
-    //     newEdgeWeight
-    //   );
-    //   cyCallBack.layout(layout).run();
-    // } catch (error) {
-    //   handleException(error);
-    // }
-    // mst.default(cyCallBack);
-  }
-  function onEdgeClickHandler() {
+  const isStartPrim = useSelector(getButtonState);
+  // const newNodeID = useSelector(getNodeID);
+  // const newNodeLabel = useSelector(getNodeLabel);
+  const newEdgeID = useSelector(getEdgeID);
+  const newEdgeSource = useSelector(getEdgeSource);
+  const newEdgeTarget = useSelector(getEdgeTarget);
+  const newEdgeWeight = useSelector(getEdgeWeight);
+  function FetchData() {
     try {
-      // mst.MoveEdge(cyCallBack, newEdgeID, newNodeID, 'seven');
-      mst.RemoveElement(cyCallBack, newEdgeID);
+      // mst.AddNode(cyCallBack, newNodeID, newNodeLabel);
+      mst.AddEdge(
+        cyCallBack,
+        newEdgeID,
+        newEdgeSource,
+        newEdgeTarget,
+        newEdgeWeight
+      );
+    } catch (error) {
+      handleException(error);
+    }
+  }
+  function onLayoutReady() {
+    if (isStartPrim.isClick === true) {
+      mst.PrimAll(cyCallBack);
+      dispatch(buttonClick(!isStartPrim.isClick));
+      cyCallBack.layout(layout).run();
+    }
+  }
+  function refreshGraph() {
+    try {
       cyCallBack.layout(layout).run();
     } catch (error) {
       handleException(error);
     }
   }
+  function nodeTap() {
+    cyCallBack.layout(layout).run();
+  }
+  // useMemo(()=> {
+  //   FetchData();
+  // })
   useEffect(() => {
-    // render on change
-    CustomRender();
-    cyCallBack.on('tap', 'node', onNodeClickHandler);
-    cyCallBack.on('tap', 'edge', onEdgeClickHandler);
+    onLayoutReady();
+    FetchData();
+    cyCallBack.on('tap', 'node', nodeTap);
+    cyCallBack.one('add', 'edge', refreshGraph);
+    cyCallBack.one('remove', 'edge', refreshGraph);
   });
   return (
     <div className={styles.galaxy}>

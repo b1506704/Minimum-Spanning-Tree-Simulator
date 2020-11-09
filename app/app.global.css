@@ -24,7 +24,7 @@
   clear: both;
 }
 @font-face {
-  font-family: 'power_symbols';
+  font-family: power_symbols;
   src: url('./fonts/Unicode_IEC_symbol.ttf');
   font-weight: normal;
   font-style: normal;

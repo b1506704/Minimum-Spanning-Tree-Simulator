@@ -1,24 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './TopMenu.css';
-import {
-  addNodeID,
-  addNodeLabel,
-  addEdgeID,
-  addEdgeSource,
-  addEdgeTarget,
-  addEdgeWeight,
-} from '../../features/graph/graphSlice';
+import { buttonClick, getButtonState } from './buttonSlice';
 
 export default function TopMenu() {
   const dispatch = useDispatch();
+  const isClick = useSelector(getButtonState);
   function onStartClick() {
-    dispatch(addNodeID('n3'));
-    dispatch(addNodeLabel('Planet3'));
-    dispatch(addEdgeID('e2'));
-    dispatch(addEdgeSource('n1'));
-    dispatch(addEdgeTarget('n3'));
-    dispatch(addEdgeWeight(Math.random()));
+    // isClick.isClick= !isClick;
+    dispatch(buttonClick(!isClick.isClick));
   }
   return (
     <div className={styles.top}>

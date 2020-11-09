@@ -1,0 +1,24 @@
+1. Handle:floatmenu:
+    - get log = () => {
+        first nodeID,
+        deleted elementsID,elementsData
+        ...
+     } from Graph.tsx
+    onSave(),
+    onPowerOff(),
+    onShowInfo(),
+    ...
+    from FloatMenu.tsx
+2. Handle:
+    addEdge(), 
+    addNode(),
+    moveEdge(),
+    onChange() of switch,
+        from BottomMeu.tsx
+3. Implement Prim, stronglyConnected algorithms
+4. Handle:
+    onStartEngine(),
+    onStopEngine(),
+    onDashEngine(),
+5. Add BackgroundImage to nodes
+    from eles.tsx (stylesheet)

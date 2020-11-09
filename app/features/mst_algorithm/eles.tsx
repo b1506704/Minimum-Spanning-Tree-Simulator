@@ -7,13 +7,15 @@ const stylesheet: cytoscape.Stylesheet[] = [
   {
     selector: 'node',
     style: {
-      content: 'data(label)',
+      content: 'data(id)',
       'background-color': 'rgba(88, 197, 240, 0.603)',
       'border-style': 'dotted',
       'border-width': '2',
       'border-color': 'blue',
       'font-family': 'Outerspace',
       'font-size': '35',
+      'text-outline-color': 'white',
+      'text-outline-width': '3',
       'overlay-color': 'transparent',
       ghost: 'yes',
       'ghost-offset-x': 6,
@@ -22,7 +24,7 @@ const stylesheet: cytoscape.Stylesheet[] = [
       'transition-property': 'height width color background-color font-size',
       'transition-timing-function': 'ease-in-out',
       'transition-duration': 1.5,
-      color: 'pink',
+      color: 'transparent',
       height: '75',
       width: '75',
     },
@@ -44,11 +46,21 @@ const stylesheet: cytoscape.Stylesheet[] = [
       content: 'data(weight)',
       // label: 'data(label)',
       'curve-style': 'unbundled-bezier',
-      'line-color': 'mapData(weight, 0, 50, white, red)',
-      'line-style': 'dashed',
+      // 'curve-style': 'straight',
+      'target-arrow-shape': 'triangle',
+      'source-arrow-shape': 'circle',
+      'source-arrow-fill': 'hollow',
+      'target-arrow-fill': 'hollow',
+      'source-arrow-color': 'blue',
+      'target-arrow-color': 'blue',
+      'arrow-scale': 0.5,
+      'text-outline-color': 'white',
+      'text-outline-width': '3',
+      'line-color': 'mapData(weight, 0, 50, yellow, red)',
+      'line-style': 'dotted',
       'font-size': '45',
       'font-family': 'Subtitle',
-      width: 'mapData(weight, 0, 100, 0, 50)',
+      width: 15,
       color: 'yellow',
       'transition-property':
         'width color font-size line-color line-style text-outline-width',
@@ -107,7 +119,7 @@ const cose = {
   animationEasing: 'ease-in-out',
 
   // The duration of the animation for animate:'end'
-  animationDuration: 1000,
+  animationDuration: 2000,
 
   // A function that determines whether the node should be animated
   // All nodes animated by default on animate enabled
@@ -201,142 +213,206 @@ const layout = cose;
 
 const elements = [
   {
-    data: { id: 'one', label: 'Earth' },
+    data: { id: 'n1', label: 'Earth' },
   },
   {
-    data: { id: 'two', label: 'Mars' },
+    data: { id: 'n2', label: 'Mars' },
   },
   {
-    data: { id: 'three', label: 'Venus' },
+    data: { id: 'n3', label: 'Venus' },
   },
   {
-    data: { id: 'four', label: 'Mercury' },
+    data: { id: 'n4', label: 'Mercury' },
   },
   {
-    data: { id: 'five', label: 'Jubiter' },
+    data: { id: 'n5', label: 'Jubiter' },
   },
   {
-    data: { id: 'six', label: 'Saturn' },
+    data: { id: 'n6', label: 'Saturn' },
   },
   {
-    data: { id: 'seven', label: 'Uranus' },
+    data: { id: 'n7', label: 'Uranus' },
   },
   {
-    data: { id: 'eight', label: 'Neptune' },
+    data: { id: 'n8', label: 'Neptune' },
   },
   {
-    data: { id: 'nine', label: 'Sun' },
+    data: { id: 'n9', label: 'Sun' },
   },
   {
     data: {
-      source: 'one',
-      target: 'two',
-      id: 'edge1',
+      source: 'n1',
+      target: 'n2',
+      id: 'e1',
       weight: 30,
     },
   },
   {
     data: {
-      source: 'two',
-      target: 'three',
-      id: 'edge2',
+      source: 'n2',
+      target: 'n3',
+      id: 'e2',
       weight: 15,
     },
   },
   {
     data: {
-      source: 'two',
-      target: 'four',
-      id: 'edge3',
+      source: 'n2',
+      target: 'n4',
+      id: 'e3',
       weight: 44,
     },
   },
   {
     data: {
-      source: 'two',
-      target: 'five',
-      id: 'edge4',
+      source: 'n2',
+      target: 'n5',
+      id: 'e4',
       weight: 36,
     },
   },
   {
     data: {
-      source: 'three',
-      target: 'five',
-      id: 'edge5',
+      source: 'n3',
+      target: 'n6',
+      id: 'e5',
       weight: 10,
     },
   },
   {
     data: {
-      source: 'five',
-      target: 'six',
-      id: 'edge6',
+      source: 'n5',
+      target: 'n6',
+      id: 'e6',
       weight: 7,
     },
   },
   {
     data: {
-      source: 'six',
-      target: 'two',
-      id: 'edge7',
+      source: 'n6',
+      target: 'n7',
+      id: 'e7',
       weight: 28,
     },
   },
   {
     data: {
-      source: 'one',
-      target: 'three',
-      id: 'edge8',
-      weight: 15.5,
+      source: 'n1',
+      target: 'n3',
+      id: 'e8',
+      weight: 15,
     },
   },
   {
     data: {
-      source: 'three',
-      target: 'seven',
-      id: 'edge9',
+      source: 'n1',
+      target: 'n9',
+      id: 'e9',
+      weight: 15.6,
+    },
+  },
+  {
+    data: {
+      source: 'n1',
+      target: 'n7',
+      id: 'e10',
+      weight: 15.6,
+    },
+  },
+  {
+    data: {
+      source: 'n3',
+      target: 'n7',
+      id: 'e11',
       weight: 22,
     },
   },
   {
     data: {
-      source: 'two',
-      target: 'eight',
-      id: 'edge10',
-      weight: 34,
+      source: 'n2',
+      target: 'n8',
+      id: 'e12',
+      weight: 15,
     },
   },
   {
     data: {
-      source: 'four',
-      target: 'nine',
-      label: '3',
+      source: 'n5',
+      target: 'n9',
+      id: 'e13',
+      weight: 36,
+    },
+  },
+  {
+    data: {
+      source: 'n4',
+      target: 'n9',
+      id: 'e14',
       weight: 18,
     },
   },
   {
     data: {
-      source: 'five',
-      target: 'nine',
-      id: 'edge2',
+      source: 'n5',
+      target: 'n9',
+      id: 'e15',
       weight: 5,
     },
   },
   {
     data: {
-      source: 'one',
-      target: 'nine',
-      id: 'edge13',
+      source: 'n4',
+      target: 'n6',
+      id: 'e16',
       weight: 15.9,
     },
   },
   {
     data: {
-      source: 'six',
-      target: 'five',
-      id: 'edge14',
+      source: 'n6',
+      target: 'n9',
+      id: 'e17',
       weight: 50,
+    },
+  },
+  {
+    data: {
+      source: 'n7',
+      target: 'n8',
+      id: 'e18',
+      weight: 33,
+    },
+  },
+  {
+    data: {
+      source: 'n7',
+      target: 'n9',
+      id: 'e19',
+      weight: 33,
+    },
+  },
+  {
+    data: {
+      source: 'n3',
+      target: 'n3',
+      id: 'e20',
+      weight: 10,
+    },
+  },
+  {
+    data: {
+      source: 'n1',
+      target: 'n1',
+      id: 'e21',
+      weight: 20,
+    },
+  },
+  {
+    data: {
+      source: 'n1',
+      target: 'n5',
+      id: 'e22',
+      weight: 1,
     },
   },
 ];
