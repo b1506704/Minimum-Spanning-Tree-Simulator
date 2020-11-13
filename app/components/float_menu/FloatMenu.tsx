@@ -1,6 +1,7 @@
 import React from 'react';
 import Draggable from 'react-draggable';
 import styles from './FloatMenu.css';
+// import FloatLog from './FloatLog';
 
 export default function FloatMenu() {
   function exit() {
@@ -19,7 +20,7 @@ export default function FloatMenu() {
     //
   }
   function showLog() {
-    //
+    // <FloatLog> </FloatLog>;
   }
   return (
     <Draggable bounds="html">

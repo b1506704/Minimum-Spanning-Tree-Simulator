@@ -49,19 +49,19 @@ const stylesheet: cytoscape.Stylesheet[] = [
       // 'curve-style': 'straight',
       'target-arrow-shape': 'triangle',
       'source-arrow-shape': 'circle',
-      'source-arrow-fill': 'hollow',
-      'target-arrow-fill': 'hollow',
-      'source-arrow-color': 'blue',
+      'source-arrow-fill': 'filled',
+      'target-arrow-fill': 'filled',
+      'source-arrow-color': 'white',
       'target-arrow-color': 'blue',
       'arrow-scale': 0.5,
       'text-outline-color': 'white',
       'text-outline-width': '3',
       'line-color': 'mapData(weight, 0, 50, yellow, red)',
-      'line-style': 'dotted',
+      'line-style': 'dashed',
       'font-size': '45',
       'font-family': 'Subtitle',
       width: 15,
-      color: 'yellow',
+      color: 'red',
       'transition-property':
         'width color font-size line-color line-style text-outline-width',
       'transition-timing-function': 'ease-in-out',
@@ -119,7 +119,7 @@ const cose = {
   animationEasing: 'ease-in-out',
 
   // The duration of the animation for animate:'end'
-  animationDuration: 2000,
+  animationDuration: 1200,
 
   // A function that determines whether the node should be animated
   // All nodes animated by default on animate enabled
@@ -213,207 +213,257 @@ const layout = cose;
 
 const elements = [
   {
-    data: { id: 'n1', label: 'Earth' },
+    data: { id: 'a', label: 'Earth', mark: 'false', toVisit: 'false' },
   },
   {
-    data: { id: 'n2', label: 'Mars' },
+    data: { id: 'b', label: 'Mars', mark: 'false', toVisit: 'false' },
   },
   {
-    data: { id: 'n3', label: 'Venus' },
+    data: { id: 'c', label: 'Venus', mark: 'false', toVisit: 'false' },
   },
   {
-    data: { id: 'n4', label: 'Mercury' },
+    data: { id: 'd', label: 'Mercury', mark: 'false', toVisit: 'false' },
   },
   {
-    data: { id: 'n5', label: 'Jubiter' },
+    data: { id: 'e', label: 'Jubiter', mark: 'false', toVisit: 'false' },
   },
   {
-    data: { id: 'n6', label: 'Saturn' },
+    data: { id: 'f', label: 'Saturn', mark: 'false', toVisit: 'false' },
   },
   {
-    data: { id: 'n7', label: 'Uranus' },
+    data: { id: 'g', label: 'Uranus', mark: 'false', toVisit: 'false' },
   },
   {
-    data: { id: 'n8', label: 'Neptune' },
+    data: { id: 'h', label: 'Neptune', mark: 'false', toVisit: 'false' },
   },
   {
-    data: { id: 'n9', label: 'Sun' },
-  },
-  {
-    data: {
-      source: 'n1',
-      target: 'n2',
-      id: 'e1',
-      weight: 30,
-    },
+    data: { id: 'i', label: 'Sun', mark: 'false' },
   },
   {
     data: {
-      source: 'n2',
-      target: 'n3',
-      id: 'e2',
-      weight: 15,
-    },
-  },
-  {
-    data: {
-      source: 'n2',
-      target: 'n4',
-      id: 'e3',
-      weight: 44,
-    },
-  },
-  {
-    data: {
-      source: 'n2',
-      target: 'n5',
-      id: 'e4',
-      weight: 36,
-    },
-  },
-  {
-    data: {
-      source: 'n3',
-      target: 'n6',
-      id: 'e5',
-      weight: 10,
-    },
-  },
-  {
-    data: {
-      source: 'n5',
-      target: 'n6',
-      id: 'e6',
+      source: 'a',
+      target: 'b',
+      id: 'ab',
       weight: 7,
     },
   },
   {
     data: {
-      source: 'n6',
-      target: 'n7',
-      id: 'e7',
-      weight: 28,
+      source: 'b',
+      target: 'c',
+      id: 'bc',
+      weight: 8,
     },
   },
+
   {
     data: {
-      source: 'n1',
-      target: 'n3',
-      id: 'e8',
-      weight: 15,
-    },
-  },
-  {
-    data: {
-      source: 'n1',
-      target: 'n9',
-      id: 'e9',
-      weight: 15.6,
-    },
-  },
-  {
-    data: {
-      source: 'n1',
-      target: 'n7',
-      id: 'e10',
-      weight: 15.6,
-    },
-  },
-  {
-    data: {
-      source: 'n3',
-      target: 'n7',
-      id: 'e11',
-      weight: 22,
-    },
-  },
-  {
-    data: {
-      source: 'n2',
-      target: 'n8',
-      id: 'e12',
-      weight: 15,
-    },
-  },
-  {
-    data: {
-      source: 'n5',
-      target: 'n9',
-      id: 'e13',
-      weight: 36,
-    },
-  },
-  {
-    data: {
-      source: 'n4',
-      target: 'n9',
-      id: 'e14',
-      weight: 18,
-    },
-  },
-  {
-    data: {
-      source: 'n5',
-      target: 'n9',
-      id: 'e15',
+      source: 'a',
+      target: 'd',
+      id: 'ad',
       weight: 5,
     },
   },
+
   {
     data: {
-      source: 'n4',
-      target: 'n6',
-      id: 'e16',
-      weight: 15.9,
+      source: 'b',
+      target: 'd',
+      id: 'bd',
+      weight: 9,
+    },
+  },
+
+  {
+    data: {
+      source: 'd',
+      target: 'f',
+      id: 'df',
+      weight: 6,
+    },
+  },
+
+  // {
+  //   data: {
+  //     source: 'f',
+  //     target: 'g',
+  //     id: 'fg',
+  //     weight: 11,
+  //   },
+  // },
+
+  {
+    data: {
+      source: 'd',
+      target: 'e',
+      id: 'de',
+      weight: 15,
+    },
+  },
+
+  {
+    data: {
+      source: 'b',
+      target: 'e',
+      id: 'be',
+      weight: 7,
+    },
+  },
+
+  {
+    data: {
+      source: 'c',
+      target: 'e',
+      id: 'ce',
+      weight: 5,
+    },
+  },
+
+  // {
+  //   data: {
+  //     source: 'e',
+  //     target: 'g',
+  //     id: 'eg',
+  //     weight: 9,
+  //   },
+  // },
+
+  {
+    data: {
+      source: 'e',
+      target: 'f',
+      id: 'ef',
+      weight: 8,
     },
   },
   {
     data: {
-      source: 'n6',
-      target: 'n9',
-      id: 'e17',
-      weight: 50,
+      source: 'g',
+      target: 'h',
+      id: 'gh',
+      weight: 8,
     },
   },
   {
     data: {
-      source: 'n7',
-      target: 'n8',
-      id: 'e18',
-      weight: 33,
+      source: 'h',
+      target: 'i',
+      id: 'hi',
+      weight: 8,
     },
   },
   {
     data: {
-      source: 'n7',
-      target: 'n9',
-      id: 'e19',
-      weight: 33,
+      source: 'i',
+      target: 'g',
+      id: 'ig',
+      weight: 8,
     },
   },
-  {
-    data: {
-      source: 'n3',
-      target: 'n3',
-      id: 'e20',
-      weight: 10,
-    },
-  },
-  {
-    data: {
-      source: 'n1',
-      target: 'n1',
-      id: 'e21',
-      weight: 20,
-    },
-  },
-  {
-    data: {
-      source: 'n1',
-      target: 'n5',
-      id: 'e22',
-      weight: 1,
-    },
-  },
+
+  // {
+  //   data: {
+  //     source: 'g',
+  //     target: 'h',
+  //     id: 'gh',
+  //     weight: 8,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'b',
+  //     target: 'a',
+  //     id: 'ba',
+  //     weight: 7,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'c',
+  //     target: 'b',
+  //     id: 'cb',
+  //     weight: 8,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'd',
+  //     target: 'a',
+  //     id: 'da',
+  //     weight: 5,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'd',
+  //     target: 'b',
+  //     id: 'db',
+  //     weight: 9,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'f',
+  //     target: 'd',
+  //     id: 'fd',
+  //     weight: 6,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'g',
+  //     target: 'f',
+  //     id: 'gf',
+  //     weight: 11,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'e',
+  //     target: 'd',
+  //     id: 'ed',
+  //     weight: 15,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'e',
+  //     target: 'b',
+  //     id: 'eb',
+  //     weight: 7,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'e',
+  //     target: 'c',
+  //     id: 'ec',
+  //     weight: 5,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'g',
+  //     target: 'e',
+  //     id: 'ge',
+  //     weight: 9,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'f',
+  //     target: 'e',
+  //     id: 'fe',
+  //     weight: 8,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'h',
+  //     target: 'g',
+  //     id: 'hg',
+  //     weight: 8,
+  //   },
+  // },
 ];
 export { layout, stylesheet, elements };

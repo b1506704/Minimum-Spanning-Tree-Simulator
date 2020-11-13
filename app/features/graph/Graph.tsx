@@ -7,16 +7,11 @@ import {
   buttonClick,
   getButtonState,
 } from '../../components/top_menu/buttonSlice';
+import { getSwitchState } from '../../components/bottom_menu/switchSlice';
 import * as mst from '../mst_algorithm/mst';
 import * as eles from '../mst_algorithm/eles';
-// import { getNodeID, getNodeLabel } from './nodeSlice';
-// import { getButtonState } from '../../components/top_menu/buttonSlice';
-import {
-  getEdgeID,
-  getEdgeSource,
-  getEdgeTarget,
-  getEdgeWeight,
-} from './edgeSlice';
+import { getNodeID, getNodeLabel } from './nodeSlice';
+import { getEdgeSource, getEdgeTarget, getEdgeWeight } from './edgeSlice';
 
 export default function Graph() {
   const dispatch = useDispatch();
@@ -28,31 +23,33 @@ export default function Graph() {
   }
   let cyCallBack: cytoscape.Core;
   const isStartPrim = useSelector(getButtonState);
-  // const newNodeID = useSelector(getNodeID);
-  // const newNodeLabel = useSelector(getNodeLabel);
-  const newEdgeID = useSelector(getEdgeID);
+  const isCheckConnection = useSelector(getSwitchState);
+  const newNodeID = useSelector(getNodeID);
+  const newNodeLabel = useSelector(getNodeLabel);
   const newEdgeSource = useSelector(getEdgeSource);
   const newEdgeTarget = useSelector(getEdgeTarget);
   const newEdgeWeight = useSelector(getEdgeWeight);
   function FetchData() {
     try {
-      // mst.AddNode(cyCallBack, newNodeID, newNodeLabel);
-      mst.AddEdge(
-        cyCallBack,
-        newEdgeID,
-        newEdgeSource,
-        newEdgeTarget,
-        newEdgeWeight
-      );
+      mst.AddNode(cyCallBack, newNodeID, newNodeLabel);
+      mst.AddEdge(cyCallBack, newEdgeSource, newEdgeTarget, newEdgeWeight);
     } catch (error) {
       handleException(error);
     }
   }
   function onLayoutReady() {
     if (isStartPrim.isClick === true) {
-      mst.PrimAll(cyCallBack);
+      // mst.PrimAll(cyCallBack);
+      // mst.default(cyCallBack, cyCallBack.nodes().$id('d'));
       dispatch(buttonClick(!isStartPrim.isClick));
       cyCallBack.layout(layout).run();
+    }
+    if (isCheckConnection.isCheck === true) {
+      mst.FindConnectedComponent(cyCallBack);
+      cyCallBack.elements().unselectify();
+    } else {
+      cyCallBack.elements().selectify();
+      cyCallBack.elements().unselect();
     }
   }
   function refreshGraph() {
@@ -72,13 +69,13 @@ export default function Graph() {
     onLayoutReady();
     FetchData();
     cyCallBack.on('tap', 'node', nodeTap);
-    cyCallBack.one('add', 'edge', refreshGraph);
-    cyCallBack.one('remove', 'edge', refreshGraph);
+    cyCallBack.one('add', refreshGraph);
+    cyCallBack.one('remove', refreshGraph);
   });
   return (
     <div className={styles.galaxy}>
       <div className={styles.stars} />
-      <div className={styles.twinkling} />
+      {/* <div className={styles.twinkling} /> */}
       <CytoscapeComponent
         elements={elements}
         layout={layout}

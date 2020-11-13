@@ -7,7 +7,6 @@ export default function TopMenu() {
   const dispatch = useDispatch();
   const isClick = useSelector(getButtonState);
   function onStartClick() {
-    // isClick.isClick= !isClick;
     dispatch(buttonClick(!isClick.isClick));
   }
   return (

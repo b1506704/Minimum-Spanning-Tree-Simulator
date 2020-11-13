@@ -6,6 +6,7 @@ import selectionReducer from './features/selection/selectionSlice';
 import nodeReducer from './features/graph/nodeSlice';
 import edgeReducer from './features/graph/edgeSlice';
 import buttonReducer from './components/top_menu/buttonSlice';
+import switchReducer from './components/bottom_menu/switchSlice';
 
 export default function createRootReducer(history: History) {
   return combineReducers({
@@ -14,5 +15,6 @@ export default function createRootReducer(history: History) {
     newNode: nodeReducer,
     newEdge: edgeReducer,
     buttonState: buttonReducer,
+    switchState: switchReducer,
   });
 }
