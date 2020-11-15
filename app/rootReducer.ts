@@ -7,6 +7,8 @@ import nodeReducer from './features/graph/nodeSlice';
 import edgeReducer from './features/graph/edgeSlice';
 import buttonReducer from './components/top_menu/buttonSlice';
 import switchReducer from './components/bottom_menu/switchSlice';
+import submitReducer from './components/bottom_menu/submitSlice';
+import logReducer from './components/float_menu/floatLogSlice';
 
 export default function createRootReducer(history: History) {
   return combineReducers({
@@ -16,5 +18,7 @@ export default function createRootReducer(history: History) {
     newEdge: edgeReducer,
     buttonState: buttonReducer,
     switchState: switchReducer,
+    submitState: submitReducer,
+    logState: logReducer,
   });
 }

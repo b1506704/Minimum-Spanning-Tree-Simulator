@@ -18,7 +18,7 @@ export default function Selection() {
       <Link to={routes.DASHBOARD}>
         <button
           type="button"
-          onClick={() => {
+          onFocus={() => {
             dispatch(newG());
           }}
           className={styles.box}
@@ -43,7 +43,7 @@ export default function Selection() {
 
       <button
         type="button"
-        onClick={() => {
+        onFocus={() => {
           dispatch(loadG());
         }}
         className={styles.box}

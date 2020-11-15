@@ -13,6 +13,7 @@ import {
   addEdgeWeight,
 } from '../../features/graph/edgeSlice';
 import { switchCheck, getSwitchState } from './switchSlice';
+import { submitNode, submitEdge } from './submitSlice';
 import styles from './BottomMenu.css';
 
 export default function BottomMenu() {
@@ -26,6 +27,7 @@ export default function BottomMenu() {
   let isShowGraphInfoChecked: boolean;
   let isShowSetting: boolean;
   function onNodeSubmitHandler() {
+    dispatch(submitNode(true));
     dispatch(addNodeID(currentNodeID));
     dispatch(addNodeLabel(currentNodeLabel));
     const nID = document.getElementById('n_id') as HTMLInputElement;
@@ -34,6 +36,7 @@ export default function BottomMenu() {
     nLabel.value = '';
   }
   function onEdgeSubmitHandler() {
+    dispatch(submitEdge(true));
     dispatch(addEdgeSource(currentEdgeSource));
     dispatch(addEdgeTarget(currentEdgeTarget));
     dispatch(addEdgeWeight(currentEdgeWeight));
@@ -86,7 +89,7 @@ export default function BottomMenu() {
               <button
                 type="button"
                 className={styles.switch_right}
-                onClick={onCheckConnectionSwitchOff}
+                onFocus={onCheckConnectionSwitchOff}
                 // id="switch_right"
               >
                 {}
@@ -94,7 +97,7 @@ export default function BottomMenu() {
               <button
                 type="button"
                 className={styles.switch_left}
-                onClick={onCheckConnectionSwitchOn}
+                onFocus={onCheckConnectionSwitchOn}
                 // id="switch_right"
               >
                 {}
@@ -172,7 +175,7 @@ export default function BottomMenu() {
           </label>
           <input
             type="button"
-            onClick={onEdgeSubmitHandler}
+            onFocus={onEdgeSubmitHandler}
             value="&#x1F5AB;"
           />
           <span className={styles.graph_no}>
@@ -201,7 +204,7 @@ export default function BottomMenu() {
           </label>
           <input
             type="button"
-            onClick={onNodeSubmitHandler}
+            onFocus={onNodeSubmitHandler}
             value="&#x1F5AB;"
           />
           <span className={styles.graph_no}>

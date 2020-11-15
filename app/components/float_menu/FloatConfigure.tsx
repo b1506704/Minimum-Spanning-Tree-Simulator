@@ -32,7 +32,7 @@ export default function FloatConfigure() {
             className={styles.menu_item}
             id={styles.power}
             type="button"
-            onClick={exit}
+            onFocus={exit}
           >
             &#x23FB;
           </button>
@@ -40,7 +40,7 @@ export default function FloatConfigure() {
             className={styles.menu_item}
             id="save"
             type="button"
-            onClick={save}
+            onFocus={save}
           >
             &#x1F5AB;
           </button>
@@ -48,7 +48,7 @@ export default function FloatConfigure() {
             className={styles.menu_item}
             id="info"
             type="button"
-            onClick={showAppInfo}
+            onFocus={showAppInfo}
           >
             &#x1f6c8;
           </button>
@@ -56,7 +56,7 @@ export default function FloatConfigure() {
             className={styles.menu_item}
             id="energy"
             type="button"
-            onClick={showEnergy}
+            onFocus={showEnergy}
           >
             &#x1F50B;
           </button>
@@ -64,7 +64,7 @@ export default function FloatConfigure() {
             className={styles.menu_item}
             id="log"
             type="button"
-            onClick={showLog}
+            onFocus={showLog}
           >
             &#x1F4DC;
           </button>
@@ -72,7 +72,7 @@ export default function FloatConfigure() {
             className={styles.menu_item}
             id="modify}"
             type="button"
-            onClick={configureShip}
+            onFocus={configureShip}
           >
             &#9875;
           </button>

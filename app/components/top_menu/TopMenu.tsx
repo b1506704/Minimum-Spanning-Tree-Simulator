@@ -11,7 +11,7 @@ export default function TopMenu() {
   }
   return (
     <div className={styles.top}>
-      <button type="button" className={styles.start} onClick={onStartClick}>
+      <button type="button" className={styles.start} onFocus={onStartClick}>
         &#x25B6;
       </button>
       <button type="button" className={styles.pause}>

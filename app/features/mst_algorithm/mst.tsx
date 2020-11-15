@@ -30,7 +30,7 @@ function RemoveElement(_cyCallBack: cytoscape.Core, _e_id: string) {
   }
 }
 function AddNode(_cyCallBack: cytoscape.Core, _id: string, _label: string) {
-  if (_id !== 'test' && _id.trim() !== null) {
+  if (_id !== 'test' && _id.trim() !== '') {
     _cyCallBack.add([{ group: 'nodes', data: { id: _id, label: _label } }]);
   }
 }
@@ -40,17 +40,19 @@ function AddEdge(
   _target: string,
   _weight: number
 ) {
-  _cyCallBack.add([
-    {
-      group: 'edges',
-      data: {
-        id: _source + _target,
-        source: _source,
-        target: _target,
-        weight: _weight,
+  if (_source.trim() !== '' && _target.trim() !== '') {
+    _cyCallBack.add([
+      {
+        group: 'edges',
+        data: {
+          id: _source + _target,
+          source: _source,
+          target: _target,
+          weight: _weight,
+        },
       },
-    },
-  ]);
+    ]);
+  }
   // _cyCallBack.add([
   //   {
   //     group: 'edges',
@@ -62,6 +64,13 @@ function AddEdge(
   //     },
   //   },
   // ]);
+}
+function EditEdge(_cyCallBack: cytoscape.Core, weight: number) {
+  let selectedEdge: cytoscape.EdgeSingular;
+  _cyCallBack.edges().on('click', (e) => {
+    selectedEdge = e.target;
+    selectedEdge.data('weight', weight);
+  });
 }
 function MoveEdge(
   _cyCallBack: cytoscape.Core,
@@ -158,58 +167,13 @@ function FindConnectedComponent(_cyCallBack: cytoscape.Core) {
     e.select();
   });
 }
-function PrimAll(_cyCallBack: cytoscape.Core) {
-  RemoveLoop(_cyCallBack);
-  let mstCollection = _cyCallBack.collection();
-  const nodeCollection: cytoscape.NodeCollection = _cyCallBack.nodes();
-  let totalMinW = 0;
-  nodeCollection.first().data('mark', 'true');
-  nodeCollection.forEach((n) => {
-    if (n.data('mark') === 'true') {
-      const connectedE = n.connectedEdges(':unselected');
-      if (connectedE.length >= 0) {
-        let minE = GetMinEdge(connectedE);
-        let minW = minE.data('weight');
-        // to keep 2nd run remain mst
-        // if (connectedE.length === 1) {
-        //   mstCollection = mstCollection.union(minE);
-        // }
-        let currentMinEdges: cytoscape.EdgeCollection = _cyCallBack.collection();
-        connectedE.forEach((e) => {
-          const currentE = e;
-          const currentW = e.data('weight');
-          // check same min weight not removed
-          if (currentW <= minW) {
-            minE = currentE;
-            minW = currentW;
-            e.select();
-            e.target().data('mark', 'true');
-            currentMinEdges = currentMinEdges.union(minE);
-          }
-        });
-        minE = currentMinEdges.last();
-        minW = minE.data('weight');
-        totalMinW += minW;
-        mstCollection = mstCollection.union(minE);
-        showLog(n, minE, connectedE, totalMinW);
-      }
-    } else if (n.data('mark') === 'false') {
-      showLog(n, n.connectedEdges().first(), n.connectedEdges(), -1);
-      // n.unselect();
-      // go back to prenode if no outedge is found
-    }
-  });
-  // _cyCallBack.edges(':unselected').remove();
-  _cyCallBack.add(mstCollection);
-}
-
 export {
   MoveEdge,
   AddEdge,
   AddNode,
   RemoveElement,
   RemoveLoop,
-  PrimAll,
   FindConnectedComponent,
   showLog,
+  EditEdge,
 };
