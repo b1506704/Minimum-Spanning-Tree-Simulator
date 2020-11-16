@@ -1,28 +1,43 @@
+import cytoscape from 'cytoscape';
+
 /* eslint-disable no-alert */
 function showLog(
+  loop: number,
   sourceN: cytoscape.NodeSingular,
   minE: cytoscape.EdgeSingular,
   connectedE: cytoscape.EdgeCollection,
+  mstCollection: cytoscape.Collection,
   totalMinW: number
 ) {
   if (sourceN.data('mark') === 'false') {
-    alert(`Node ${JSON.stringify(sourceN.json(), ['data', 'id', 'mark'], 2)}`);
-  } else {
-    alert(`Min edge connected to ${JSON.stringify(
+    return `Node ${JSON.stringify(sourceN.json(), ['data', 'id', 'mark'], 2)}`;
+  }
+  return `
+    ------------------Loop ${loop}---------------
+
+    Min edge connected to ${JSON.stringify(
       sourceN.json(),
       ['data', 'id', 'mark'],
       2
     )}: ${JSON.stringify(
-      minE.json(),
-      ['data', 'source', 'target', 'weight', 'mark', 'id'],
-      2
-    )} ${JSON.stringify(
-      connectedE.jsons(),
-      ['data', 'source', 'target', 'weight', 'mark', 'id'],
-      2
-    )}
-      Total min weight of the graph: ${totalMinW}`);
-  }
+    minE.json(),
+    ['data', 'id', 'source', 'target', 'weight', 'mark'],
+    2
+  )} 
+
+  Neighbor: ${JSON.stringify(
+    connectedE.jsons(),
+    ['data', 'id', 'source', 'target', 'weight', 'mark'],
+    2
+  )}
+
+  MST Collection: ${JSON.stringify(
+    mstCollection.jsons(),
+    ['data', 'id', 'source', 'target'],
+    2
+  )}
+
+  Total min weight = ${totalMinW}`;
 }
 function RemoveElement(_cyCallBack: cytoscape.Core, _e_id: string) {
   if (_cyCallBack.getElementById(_e_id).inside()) {
@@ -31,7 +46,9 @@ function RemoveElement(_cyCallBack: cytoscape.Core, _e_id: string) {
 }
 function AddNode(_cyCallBack: cytoscape.Core, _id: string, _label: string) {
   if (_id !== 'test' && _id.trim() !== '') {
-    _cyCallBack.add([{ group: 'nodes', data: { id: _id, label: _label } }]);
+    _cyCallBack.add([
+      { group: 'nodes', data: { id: _id.trim(), label: _label.trim() } },
+    ]);
   }
 }
 function AddEdge(
@@ -41,17 +58,22 @@ function AddEdge(
   _weight: number
 ) {
   if (_source.trim() !== '' && _target.trim() !== '') {
-    _cyCallBack.add([
-      {
-        group: 'edges',
-        data: {
-          id: _source + _target,
-          source: _source,
-          target: _target,
-          weight: _weight,
+    if (
+      _cyCallBack.nodes().$id(_source).inside() &&
+      _cyCallBack.nodes().$id(_target).inside()
+    ) {
+      _cyCallBack.add([
+        {
+          group: 'edges',
+          data: {
+            id: _source.trim() + _target.trim(),
+            source: _source.trim(),
+            target: _target.trim(),
+            weight: _weight,
+          },
         },
-      },
-    ]);
+      ]);
+    }
   }
   // _cyCallBack.add([
   //   {
@@ -101,71 +123,81 @@ function GetMinEdge(edge: cytoscape.EdgeCollection) {
   });
   return minE;
 }
-export default function MST(
-  _cyCallBack: cytoscape.Core,
-  _startNode: cytoscape.NodeSingular
-) {
+const cy = cytoscape({});
+let mstCollection: cytoscape.Collection = cy.collection();
+let jsonString = '';
+let loop = 0;
+let totalMinW = 0;
+export default function MST(_cyCallBack: cytoscape.Core) {
+  jsonString = '';
+  totalMinW = 0;
+  loop = 0;
   RemoveLoop(_cyCallBack);
-  let mstCollection = _cyCallBack.collection();
   const nodeCollection: cytoscape.NodeCollection = _cyCallBack.nodes();
-  let totalMinW = 0;
-  nodeCollection.$id(_startNode.id()).data('mark', 'true');
-  // for each node check if the
-  // connectedEdges of the source node
-  // target node is min edges
   nodeCollection.forEach((n) => {
-    if (n.data('mark') === 'true') {
-      const connectedE = n.neighborhood().edges(':unselected');
-      if (connectedE.length !== 0) {
-        let minE = GetMinEdge(connectedE);
-        let minW = minE.data('weight');
-        // to keep 2nd run remain mst
-        // if (connectedE.length === 1) {
-        //   mstCollection = mstCollection.union(minE);
-        // }
-        let currentMinEdges: cytoscape.EdgeCollection = _cyCallBack.collection();
-        connectedE.forEach((e) => {
-          const currentE = e;
-          const currentW = e.data('weight');
-          // check same min weight not removed
-          if (currentW <= minW) {
-            minE = currentE;
-            minW = currentW;
-            e.select();
-            e.source().data('mark', 'true');
-            e.target().data('mark', 'true');
-            currentMinEdges = currentMinEdges.union(minE);
-          } else if (e.target().indegree(false) >= 2) {
-            // e.target().data('toVisit', 'true');
-            e.remove();
-          }
-        });
-        minE = currentMinEdges.first();
-        minW = minE.data('weight');
-        totalMinW += minW;
-        mstCollection = mstCollection.union(minE);
-        showLog(n, minE, connectedE, totalMinW);
-      }
-    } else {
-      showLog(n, n.connectedEdges().first(), n.connectedEdges(), -1);
+    loop += 1;
+    const sourceConnectedE = n.connectedEdges(':unselected');
+    if (sourceConnectedE.length !== 0) {
+      let minE = GetMinEdge(sourceConnectedE);
+      let minW = minE.data('weight');
+      // to keep 2nd run remain mst
+      // if (connectedE.length === 1) {
+      //   mstCollection = mstCollection.union(minE);
+      // }
+      let currentMinEdges: cytoscape.EdgeCollection = _cyCallBack.collection();
+      sourceConnectedE.forEach((e) => {
+        const currentE = e;
+        const currentW = e.data('weight');
+        // check same min weight not removed
+        if (currentW <= minW) {
+          minE = currentE;
+          minW = currentW;
+          currentMinEdges = currentMinEdges.union(minE);
+          minE = currentMinEdges.first();
+          minW = minE.data('weight');
+        } else {
+          e.remove();
+        }
+      });
+      minE.select();
+      minE.data('mark', 'true');
+      minE.target().data('mark', 'true');
+      minE.source().data('mark', 'true');
+      mstCollection = mstCollection.union(minE);
+      totalMinW += minW;
+      _cyCallBack.add(mstCollection);
+      jsonString += `\n${showLog(
+        loop,
+        n,
+        minE,
+        sourceConnectedE,
+        mstCollection,
+        totalMinW
+      )}`;
     }
-    n.data('toVisit', 'false');
-    //
-    // n.unselect();
-    // go back to prenode if no outedge is found
-    // PrimAll(_cyCallBack);
   });
-  if (nodeCollection.last().data('mark') === false) {
-    //
-  }
-  // _cyCallBack.edges(':unselected').remove();
-  _cyCallBack.add(mstCollection);
+  return jsonString;
+}
+function PrimAll(_cyCallBack: cytoscape.Core) {
+  RemoveLoop(_cyCallBack);
+  const nodeCollection: cytoscape.NodeCollection = _cyCallBack.nodes();
+  nodeCollection.forEach((n) => {
+    n.data('mark', 'false');
+  });
+  //
 }
 function FindConnectedComponent(_cyCallBack: cytoscape.Core) {
+  let connectedComponent = '\nStrongly connected components: ';
   const connectedComponents = _cyCallBack.elements().tarjanStronglyConnected();
   connectedComponents.components.forEach((e) => {
     e.select();
+    connectedComponent += `\n ${JSON.stringify(
+      e.jsons(),
+      ['data', 'source', 'target', 'weight'],
+      2
+    )}`;
   });
+  return connectedComponent;
 }
 export {
   MoveEdge,
@@ -174,6 +206,7 @@ export {
   RemoveElement,
   RemoveLoop,
   FindConnectedComponent,
+  PrimAll,
   showLog,
   EditEdge,
 };

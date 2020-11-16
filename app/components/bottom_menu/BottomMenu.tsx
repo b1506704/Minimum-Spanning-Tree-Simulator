@@ -14,6 +14,7 @@ import {
 } from '../../features/graph/edgeSlice';
 import { switchCheck, getSwitchState } from './switchSlice';
 import { submitNode, submitEdge } from './submitSlice';
+import { sendLog } from '../../features/graph/sendLogSlice';
 import styles from './BottomMenu.css';
 
 export default function BottomMenu() {
@@ -36,11 +37,15 @@ export default function BottomMenu() {
     nLabel.value = '';
   }
   function onEdgeSubmitHandler() {
-    dispatch(submitEdge(true));
-    dispatch(addEdgeSource(currentEdgeSource));
-    dispatch(addEdgeTarget(currentEdgeTarget));
-    dispatch(addEdgeWeight(currentEdgeWeight));
-    dispatch(addEdgeID(currentEdgeSource + currentEdgeTarget));
+    if (!Number.isNaN(currentEdgeWeight)) {
+      dispatch(submitEdge(true));
+      dispatch(addEdgeSource(currentEdgeSource));
+      dispatch(addEdgeTarget(currentEdgeTarget));
+      dispatch(addEdgeWeight(currentEdgeWeight));
+      dispatch(addEdgeID(currentEdgeSource + currentEdgeTarget));
+    } else {
+      dispatch(sendLog('Please enter correct weight'));
+    }
     const eSource = document.getElementById('e_source') as HTMLInputElement;
     const eTarget = document.getElementById('e_target') as HTMLInputElement;
     const eWeight = document.getElementById('e_weight') as HTMLInputElement;

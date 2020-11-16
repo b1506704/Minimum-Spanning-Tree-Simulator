@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export default function ElesData() {
   return 0;
 }
@@ -23,18 +24,19 @@ const elements = [
   {
     data: { id: 'g', label: 'Uranus', mark: 'false', toVisit: 'false' },
   },
-  {
-    data: { id: 'h', label: 'Neptune', mark: 'false', toVisit: 'false' },
-  },
-  {
-    data: { id: 'i', label: 'Sun', mark: 'false' },
-  },
+  // {
+  //   data: { id: 'h', label: 'Neptune', mark: 'false', toVisit: 'false' },
+  // },
+  // {
+  //   data: { id: 'i', label: 'Sun', mark: 'false' },
+  // },
   {
     data: {
       source: 'a',
       target: 'b',
       id: 'ab',
       weight: 7,
+      mark: 'false',
     },
   },
   {
@@ -43,6 +45,7 @@ const elements = [
       target: 'c',
       id: 'bc',
       weight: 8,
+      mark: 'false',
     },
   },
 
@@ -52,6 +55,7 @@ const elements = [
       target: 'd',
       id: 'ad',
       weight: 5,
+      mark: 'false',
     },
   },
 
@@ -61,6 +65,7 @@ const elements = [
       target: 'd',
       id: 'bd',
       weight: 9,
+      mark: 'false',
     },
   },
 
@@ -70,17 +75,19 @@ const elements = [
       target: 'f',
       id: 'df',
       weight: 6,
+      mark: 'false',
     },
   },
 
-  // {
-  //   data: {
-  //     source: 'f',
-  //     target: 'g',
-  //     id: 'fg',
-  //     weight: 11,
-  //   },
-  // },
+  {
+    data: {
+      source: 'f',
+      target: 'g',
+      id: 'fg',
+      weight: 11,
+      mark: 'false',
+    },
+  },
 
   {
     data: {
@@ -88,6 +95,7 @@ const elements = [
       target: 'e',
       id: 'de',
       weight: 15,
+      mark: 'false',
     },
   },
 
@@ -97,6 +105,7 @@ const elements = [
       target: 'e',
       id: 'be',
       weight: 7,
+      mark: 'false',
     },
   },
 
@@ -106,17 +115,19 @@ const elements = [
       target: 'e',
       id: 'ce',
       weight: 5,
+      mark: 'false',
     },
   },
 
-  // {
-  //   data: {
-  //     source: 'e',
-  //     target: 'g',
-  //     id: 'eg',
-  //     weight: 9,
-  //   },
-  // },
+  {
+    data: {
+      source: 'e',
+      target: 'g',
+      id: 'eg',
+      weight: 9,
+      mark: 'false',
+    },
+  },
 
   {
     data: {
@@ -124,32 +135,33 @@ const elements = [
       target: 'f',
       id: 'ef',
       weight: 8,
+      mark: 'false',
     },
   },
-  {
-    data: {
-      source: 'g',
-      target: 'h',
-      id: 'gh',
-      weight: 8,
-    },
-  },
-  {
-    data: {
-      source: 'h',
-      target: 'i',
-      id: 'hi',
-      weight: 8,
-    },
-  },
-  {
-    data: {
-      source: 'i',
-      target: 'g',
-      id: 'ig',
-      weight: 8,
-    },
-  },
+  // {
+  //   data: {
+  //     source: 'g',
+  //     target: 'h',
+  //     id: 'gh',
+  //     weight: 8,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'h',
+  //     target: 'i',
+  //     id: 'hi',
+  //     weight: 8,
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'i',
+  //     target: 'g',
+  //     id: 'ig',
+  //     weight: 8,
+  //   },
+  // },
 
   // {
   //   data: {

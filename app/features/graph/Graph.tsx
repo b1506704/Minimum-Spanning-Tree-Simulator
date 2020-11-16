@@ -8,8 +8,10 @@ import {
   buttonClick,
   getButtonState,
 } from '../../components/top_menu/buttonSlice';
-
-import { getSwitchState } from '../../components/bottom_menu/switchSlice';
+import {
+  getSwitchState,
+  switchCheck,
+} from '../../components/bottom_menu/switchSlice';
 import {
   submitNode,
   submitEdge,
@@ -20,6 +22,7 @@ import * as mst from '../mst_algorithm/mst';
 import * as eles from '../mst_algorithm/eles';
 import { getNodeID, getNodeLabel } from './nodeSlice';
 import { getEdgeSource, getEdgeTarget, getEdgeWeight } from './edgeSlice';
+import { sendLog } from './sendLogSlice';
 
 export default function Graph() {
   const dispatch = useDispatch();
@@ -27,7 +30,7 @@ export default function Graph() {
   const { elements } = eles;
   const { style } = eles;
   function handleException(_error: string) {
-    alert(_error);
+    dispatch(sendLog(`${_error}\n`));
   }
   let cyCallBack: cytoscape.Core;
   const isStartPrim = useSelector(getButtonState);
@@ -40,28 +43,29 @@ export default function Graph() {
   const newEdgeTarget = useSelector(getEdgeTarget);
   const newEdgeWeight = useSelector(getEdgeWeight);
   function FetchData() {
-    try {
-      if (isNodeSubmit === true) {
-        mst.AddNode(cyCallBack, newNodeID, newNodeLabel);
-        dispatch(submitNode(!isNodeSubmit));
-      }
-      if (isEdgeSubmit === true) {
-        mst.AddEdge(cyCallBack, newEdgeSource, newEdgeTarget, newEdgeWeight);
-        dispatch(submitEdge(!isEdgeSubmit));
-      }
-    } catch (error) {
-      handleException(error);
+    if (isNodeSubmit === true) {
+      mst.AddNode(cyCallBack, newNodeID, newNodeLabel);
+      dispatch(submitNode(!isNodeSubmit));
+    }
+    if (isEdgeSubmit === true) {
+      mst.AddEdge(cyCallBack, newEdgeSource, newEdgeTarget, newEdgeWeight);
+      dispatch(submitEdge(!isEdgeSubmit));
     }
   }
   function onLayoutReady() {
     if (isStartPrim.isClick === true) {
+      const logValue = mst.default(cyCallBack);
+      dispatch(sendLog(logValue));
       dispatch(buttonClick(!isStartPrim.isClick));
-      // mst.default(cyCallBack, cyCallBack.$id('d'));
-      cyCallBack.layout(layout).run();
+      // cyCallBack.layout(layout).run();
     }
     if (isCheckConnection.isCheck === true) {
-      mst.FindConnectedComponent(cyCallBack);
+      const logValue = mst.FindConnectedComponent(cyCallBack);
+      dispatch(sendLog(logValue));
       cyCallBack.elements().unselectify();
+      setTimeout(() => {
+        dispatch(switchCheck(!isCheckConnection.isCheck));
+      }, 3000);
     } else {
       cyCallBack.elements().selectify();
       cyCallBack.elements().unselect();
@@ -69,24 +73,21 @@ export default function Graph() {
     mst.EditEdge(cyCallBack, 25);
   }
   function refreshGraph() {
+    cyCallBack.layout(layout).run();
+  }
+  function nodeTap() {
+    cyCallBack.layout(layout).run();
+  }
+  useEffect(() => {
     try {
-      cyCallBack.layout(layout).run();
+      onLayoutReady();
+      FetchData();
+      cyCallBack.on('tap', 'node', nodeTap);
+      cyCallBack.one('add', refreshGraph);
+      cyCallBack.one('remove', refreshGraph);
     } catch (error) {
       handleException(error);
     }
-  }
-  // function nodeTap() {
-  //   cyCallBack.layout(layout).run();
-  // }
-  // useMemo(()=> {
-  //   FetchData();
-  // })
-  useEffect(() => {
-    onLayoutReady();
-    FetchData();
-    // cyCallBack.on('tap', 'node', nodeTap);
-    cyCallBack.one('add', refreshGraph);
-    cyCallBack.one('remove', refreshGraph);
   });
   return (
     <div className={styles.galaxy}>

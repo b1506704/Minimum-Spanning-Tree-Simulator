@@ -65,5 +65,6 @@ CHECKED - https://tympanus.net/codrops/2014/02/26/creating-a-border-animation-ef
 - CHECKED https://codepen.io/Anna_Batura/pen/KrGLwA
 9. GRAPH:
 - CHECKED https://js.cytoscape.org/
+- DATA https://lhchuong.wordpress.com/2014/10/02/thuat-toan-prim-tim-cay-bao-trum-nho-nhat/
 10. LazyLoad:
 - CHECKED https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay

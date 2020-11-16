@@ -1,21 +1,94 @@
 .container_menu {
-  position: fixed;
+  position: absolute;
   visibility: visible;
-  top: 50%;
-  left: 50%;
+  top: 30;
+  right: 30;
   border: transparent;
   background: #2c3e5081;
   user-select: none;
   backdrop-filter: blur(3px);
   overflow: hidden;
-  height: 500px;
-  width: 200px;
+  min-height: 400px;
+  height: auto;
+  width: 350px;
+  cursor: grab;
   border-radius: 25px;
   transition: all 0.4s ease-out;
   z-index: 999;
 }
 .container_menu:hover {
   box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
-  border: 5px ridge palegoldenrod;
 }
+.container_menu .title_bar {
+  position: sticky;
+  top: 0px;
+  border: transparent;
+  background: #3a536b2c;
+  user-select: none;
+  overflow: hidden;
+  height: 40px; 
+  color: aliceblue;
+  font-family: Sci-fi;
+  font-size: 25px;
+  backdrop-filter: blur(3px);
+  padding-left: 150px;
+  padding-top: 8px;
+  width: 100%;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
+  /* cursor: grab; */
+}
+.container_menu .log {
+  top: 0px;
+  position: absolute;
+  margin-top: 0px;
+  height: 100%;
+  width: 100%;
+  padding: 35px;
+  overflow: auto;
+  cursor: grab;
+  font-family: Sci-fi;
+  font-size: 15px;
+  user-select: none;
+  border: transparent;
+  z-index: -1;
+  background: transparent;
+  color: aliceblue;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
+}
+.container_menu .exit_btn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  height: 30px;
+  width: 30px;
+  border: transparent;
+  font-family: Outerspace;
+  background: transparent;
+  font-size: 15px;
+  padding: 5px;
+  color: rgb(198, 235, 236);
+  transition: all 0.4s ease-in-out;
+}
+.container_menu .clear_btn {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  height: 30px;
+  width: 30px;
+  border: transparent;
+  font-family: Outerspace;
+  background: transparent;
+  font-size: 15px;
+  padding: 5px;
+  color: rgb(198, 235, 236);
+  transition: all 0.4s ease-in-out;
+}
+.container_menu button:hover {
+  transform: scale(1.25);
+  cursor: pointer;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
+  color: aliceblue;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9dd7e6, 0 0 20px rgb(123, 163, 204), 0 0 25px #0073e6, 0 0 30px #50769c, 0 0 35px #45eb8a;
+}
+
 
