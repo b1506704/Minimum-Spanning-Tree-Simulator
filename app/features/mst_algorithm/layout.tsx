@@ -3,6 +3,7 @@ export default function Layout() {
 }
 const cose = {
   name: 'cose',
+  directed: true,
 
   // Called on `layoutready`
   ready() {},

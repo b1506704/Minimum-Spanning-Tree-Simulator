@@ -54,7 +54,10 @@ export default function Graph() {
   }
   function onLayoutReady() {
     if (isStartPrim.isClick === true) {
-      const logValue = mst.default(cyCallBack);
+      // const logValue = mst.default(cyCallBack);
+      // const logValue = mst.default(cyCallBack, cyCallBack.$id('f'));
+      // const logValue = mst.Kruskal(cyCallBack);
+      const logValue = mst.Kruskal(cyCallBack);
       dispatch(sendLog(logValue));
       dispatch(buttonClick(!isStartPrim.isClick));
       // cyCallBack.layout(layout).run();

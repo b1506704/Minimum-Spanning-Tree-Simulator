@@ -1,44 +1,5 @@
 import cytoscape from 'cytoscape';
-
 /* eslint-disable no-alert */
-function showLog(
-  loop: number,
-  sourceN: cytoscape.NodeSingular,
-  minE: cytoscape.EdgeSingular,
-  connectedE: cytoscape.EdgeCollection,
-  mstCollection: cytoscape.Collection,
-  totalMinW: number
-) {
-  if (sourceN.data('mark') === 'false') {
-    return `Node ${JSON.stringify(sourceN.json(), ['data', 'id', 'mark'], 2)}`;
-  }
-  return `
-    ------------------Loop ${loop}---------------
-
-    Min edge connected to ${JSON.stringify(
-      sourceN.json(),
-      ['data', 'id', 'mark'],
-      2
-    )}: ${JSON.stringify(
-    minE.json(),
-    ['data', 'id', 'source', 'target', 'weight', 'mark'],
-    2
-  )} 
-
-  Neighbor: ${JSON.stringify(
-    connectedE.jsons(),
-    ['data', 'id', 'source', 'target', 'weight', 'mark'],
-    2
-  )}
-
-  MST Collection: ${JSON.stringify(
-    mstCollection.jsons(),
-    ['data', 'id', 'source', 'target'],
-    2
-  )}
-
-  Total min weight = ${totalMinW}`;
-}
 function RemoveElement(_cyCallBack: cytoscape.Core, _e_id: string) {
   if (_cyCallBack.getElementById(_e_id).inside()) {
     _cyCallBack.getElementById(_e_id).remove();
@@ -75,17 +36,6 @@ function AddEdge(
       ]);
     }
   }
-  // _cyCallBack.add([
-  //   {
-  //     group: 'edges',
-  //     data: {
-  //       id: _target + _source,
-  //       source: _target,
-  //       target: _source,
-  //       weight: _weight,
-  //     },
-  //   },
-  // ]);
 }
 function EditEdge(_cyCallBack: cytoscape.Core, weight: number) {
   let selectedEdge: cytoscape.EdgeSingular;
@@ -123,81 +73,51 @@ function GetMinEdge(edge: cytoscape.EdgeCollection) {
   });
   return minE;
 }
-const cy = cytoscape({});
-let mstCollection: cytoscape.Collection = cy.collection();
-let jsonString = '';
-let loop = 0;
-let totalMinW = 0;
-export default function MST(_cyCallBack: cytoscape.Core) {
-  jsonString = '';
-  totalMinW = 0;
-  loop = 0;
-  RemoveLoop(_cyCallBack);
-  const nodeCollection: cytoscape.NodeCollection = _cyCallBack.nodes();
-  nodeCollection.forEach((n) => {
-    loop += 1;
-    const sourceConnectedE = n.connectedEdges(':unselected');
-    if (sourceConnectedE.length !== 0) {
-      let minE = GetMinEdge(sourceConnectedE);
-      let minW = minE.data('weight');
-      // to keep 2nd run remain mst
-      // if (connectedE.length === 1) {
-      //   mstCollection = mstCollection.union(minE);
-      // }
-      let currentMinEdges: cytoscape.EdgeCollection = _cyCallBack.collection();
-      sourceConnectedE.forEach((e) => {
-        const currentE = e;
-        const currentW = e.data('weight');
-        // check same min weight not removed
-        if (currentW <= minW) {
-          minE = currentE;
-          minW = currentW;
-          currentMinEdges = currentMinEdges.union(minE);
-          minE = currentMinEdges.first();
-          minW = minE.data('weight');
-        } else {
-          e.remove();
-        }
-      });
-      minE.select();
-      minE.data('mark', 'true');
-      minE.target().data('mark', 'true');
-      minE.source().data('mark', 'true');
-      mstCollection = mstCollection.union(minE);
-      totalMinW += minW;
-      _cyCallBack.add(mstCollection);
-      jsonString += `\n${showLog(
-        loop,
-        n,
-        minE,
-        sourceConnectedE,
-        mstCollection,
-        totalMinW
-      )}`;
-    }
-  });
-  return jsonString;
-}
-function PrimAll(_cyCallBack: cytoscape.Core) {
-  RemoveLoop(_cyCallBack);
-  const nodeCollection: cytoscape.NodeCollection = _cyCallBack.nodes();
-  nodeCollection.forEach((n) => {
-    n.data('mark', 'false');
-  });
-  //
-}
 function FindConnectedComponent(_cyCallBack: cytoscape.Core) {
-  let connectedComponent = '\nStrongly connected components: ';
-  const connectedComponents = _cyCallBack.elements().tarjanStronglyConnected();
+  let connectedComponent = `
+  ---Connected components--- `;
+  let loop = 0;
+  const connectedComponents = _cyCallBack
+    .elements()
+    .hopcroftTarjanBiconnected();
   connectedComponents.components.forEach((e) => {
+    loop += 1;
     e.select();
-    connectedComponent += `\n ${JSON.stringify(
-      e.jsons(),
-      ['data', 'source', 'target', 'weight'],
-      2
-    )}`;
+    connectedComponent += `
+    ----Component ${loop}------- 
+    ${JSON.stringify(e.jsons(), ['data', 'source', 'target', 'weight'], 2)}
+  -------------------------
+    `;
   });
   return connectedComponent;
+}
+function Kruskal(_cyCallBack: cytoscape.Core) {
+  let jsonString = '';
+  const k = _cyCallBack.elements().kruskal(function getMineE(edge) {
+    return edge[0].data('weight');
+  });
+  _cyCallBack.elements().remove();
+  _cyCallBack.add(k);
+  let totalMinW = 0;
+  k.edges().forEach((e) => {
+    totalMinW += e.data('weight');
+  });
+  jsonString += `
+  Minimum Spanning Tree
+  Total min weight: ${totalMinW}
+  Data
+  -----------------------------------
+  ${JSON.stringify(
+    k.jsons(),
+    ['data', 'id', 'label', 'source', 'target', 'weight'],
+    2
+  )}
+------------------------------------`;
+  return jsonString;
+}
+
+export default function MST() {
+  return 0;
 }
 export {
   MoveEdge,
@@ -206,7 +126,7 @@ export {
   RemoveElement,
   RemoveLoop,
   FindConnectedComponent,
-  PrimAll,
-  showLog,
   EditEdge,
+  GetMinEdge,
+  Kruskal,
 };
