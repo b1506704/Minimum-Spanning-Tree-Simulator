@@ -6,7 +6,7 @@ import { logClick, getLogState } from './floatLogSlice';
 
 export default function FloatMenu() {
   const dispatch = useDispatch();
-  const isLogShow = useSelector(getLogState).isClick;
+  const isLogShow = useSelector(getLogState);
   function exit() {
     window.close();
   }

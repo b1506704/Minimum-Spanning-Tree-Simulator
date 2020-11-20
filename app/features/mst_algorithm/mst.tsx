@@ -7,9 +7,7 @@ function RemoveElement(_cyCallBack: cytoscape.Core, _e_id: string) {
 }
 function AddNode(_cyCallBack: cytoscape.Core, _id: string, _label: string) {
   if (_id !== 'test' && _id.trim() !== '') {
-    _cyCallBack.add([
-      { group: 'nodes', data: { id: _id.trim(), label: _label.trim() } },
-    ]);
+    _cyCallBack.add([{ data: { id: _id.trim(), label: _label.trim() } }]);
   }
 }
 function AddEdge(
@@ -25,7 +23,7 @@ function AddEdge(
     ) {
       _cyCallBack.add([
         {
-          group: 'edges',
+          // group: 'edges',
           data: {
             id: _source.trim() + _target.trim(),
             source: _source.trim(),
@@ -93,6 +91,7 @@ function FindConnectedComponent(_cyCallBack: cytoscape.Core) {
 }
 function Kruskal(_cyCallBack: cytoscape.Core) {
   let jsonString = '';
+  RemoveLoop(_cyCallBack);
   const k = _cyCallBack.elements().kruskal(function getMineE(edge) {
     return edge[0].data('weight');
   });

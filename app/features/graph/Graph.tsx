@@ -23,6 +23,27 @@ import * as eles from '../mst_algorithm/eles';
 import { getNodeID, getNodeLabel } from './nodeSlice';
 import { getEdgeSource, getEdgeTarget, getEdgeWeight } from './edgeSlice';
 import { sendLog } from './sendLogSlice';
+import {
+  configureClick,
+  // getConfigureState,
+  getDeleteState,
+  getEditState,
+  getNodeLabelState,
+  getNodeIDState,
+  getEdgeIdState,
+  getSourceState,
+  getTargetState,
+  getWeightState,
+  sendEdgeID,
+  sendSource,
+  sendTarget,
+  sendWeight,
+  sendNodeID,
+  sendNodeLabel,
+  editClick,
+  deleteClick,
+} from '../../components/float_menu/floatConfigureSlice';
+import { logClick } from '../../components/float_menu/floatLogSlice';
 
 export default function Graph() {
   const dispatch = useDispatch();
@@ -37,12 +58,19 @@ export default function Graph() {
   const isCheckConnection = useSelector(getSwitchState);
   const isNodeSubmit = useSelector(getNodeSubmitState);
   const isEdgeSubmit = useSelector(getEdgeSubmitState);
+  // const isConfigureShow = useSelector(getConfigureState);
+  const isDelete = useSelector(getDeleteState);
+  const isEdit = useSelector(getEditState);
+  const onChangeNodeID = useSelector(getNodeIDState);
+  const onChangeNodeLabel = useSelector(getNodeLabelState);
+  const onChangeEdgeID = useSelector(getEdgeIdState);
   const newNodeID = useSelector(getNodeID);
   const newNodeLabel = useSelector(getNodeLabel);
   const newEdgeSource = useSelector(getEdgeSource);
   const newEdgeTarget = useSelector(getEdgeTarget);
   const newEdgeWeight = useSelector(getEdgeWeight);
   function FetchData() {
+    const currentElements = cyCallBack.elements();
     if (isNodeSubmit === true) {
       mst.AddNode(cyCallBack, newNodeID, newNodeLabel);
       dispatch(submitNode(!isNodeSubmit));
@@ -51,20 +79,26 @@ export default function Graph() {
       mst.AddEdge(cyCallBack, newEdgeSource, newEdgeTarget, newEdgeWeight);
       dispatch(submitEdge(!isEdgeSubmit));
     }
+    if (isDelete === true) {
+      currentElements.$id(onChangeNodeID).remove();
+      currentElements.$id(onChangeEdgeID).remove();
+      dispatch(deleteClick(!isDelete));
+    }
+    if (isEdit === true) {
+      // tapNode.data('label', useSelector(getNodeLabel));
+    }
   }
   function onLayoutReady() {
     if (isStartPrim.isClick === true) {
-      // const logValue = mst.default(cyCallBack);
-      // const logValue = mst.default(cyCallBack, cyCallBack.$id('f'));
-      // const logValue = mst.Kruskal(cyCallBack);
       const logValue = mst.Kruskal(cyCallBack);
       dispatch(sendLog(logValue));
       dispatch(buttonClick(!isStartPrim.isClick));
-      // cyCallBack.layout(layout).run();
+      dispatch(logClick(true));
     }
     if (isCheckConnection.isCheck === true) {
       const logValue = mst.FindConnectedComponent(cyCallBack);
       dispatch(sendLog(logValue));
+      dispatch(logClick(true));
       cyCallBack.elements().unselectify();
       setTimeout(() => {
         dispatch(switchCheck(!isCheckConnection.isCheck));
@@ -73,19 +107,59 @@ export default function Graph() {
       cyCallBack.elements().selectify();
       cyCallBack.elements().unselect();
     }
-    mst.EditEdge(cyCallBack, 25);
+    // mst.EditEdge(cyCallBack, 25);
   }
   function refreshGraph() {
     cyCallBack.layout(layout).run();
   }
-  function nodeTap() {
-    cyCallBack.layout(layout).run();
+  function onNodeTap() {
+    cyCallBack.nodes().on('click', (n) => {
+      const tapNode: cytoscape.NodeSingular = n.target;
+      dispatch(configureClick(true));
+      dispatch(sendNodeID(tapNode.id()));
+      dispatch(sendNodeLabel(tapNode.data('label')));
+    });
+  }
+  function onEdgeTap() {
+    cyCallBack.edges().on('click', (n) => {
+      const tapEdge: cytoscape.EdgeSingular = n.target;
+      dispatch(configureClick(true));
+      dispatch(sendEdgeID(tapEdge.id()));
+      dispatch(sendSource(tapEdge.source().id()));
+      dispatch(sendTarget(tapEdge.target().id()));
+      dispatch(sendWeight(tapEdge.data('weight')));
+    });
+  }
+  function onEdgeHover() {
+    let hoveredEdge: cytoscape.EdgeSingular;
+    cyCallBack.edges().on('mouseover', (e) => {
+      hoveredEdge = e.target;
+      hoveredEdge.select();
+    });
+    cyCallBack.edges().on('mouseout', (e) => {
+      hoveredEdge = e.target;
+      hoveredEdge.unselect();
+    });
+  }
+  function onNodeHover() {
+    let hoveredNode: cytoscape.EdgeSingular;
+    cyCallBack.nodes().on('mouseover', (n) => {
+      hoveredNode = n.target;
+      hoveredNode.select();
+    });
+    cyCallBack.nodes().on('mouseout', (n) => {
+      hoveredNode = n.target;
+      hoveredNode.unselect();
+    });
   }
   useEffect(() => {
     try {
       onLayoutReady();
       FetchData();
-      cyCallBack.on('tap', 'node', nodeTap);
+      onNodeHover();
+      onEdgeHover();
+      onNodeTap();
+      onEdgeTap();
       cyCallBack.one('add', refreshGraph);
       cyCallBack.one('remove', refreshGraph);
     } catch (error) {

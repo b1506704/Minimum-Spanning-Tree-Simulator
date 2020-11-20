@@ -174,7 +174,7 @@ export default function BottomMenu() {
               type="text"
               id="e_weight"
               onChange={function setEdgeWeight(e) {
-                currentEdgeWeight = Number(e.target.value);
+                currentEdgeWeight = Number(e.target.value.trim());
               }}
             />
           </label>

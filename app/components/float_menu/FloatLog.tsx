@@ -7,7 +7,7 @@ import styles from './FloatLog.css';
 
 export default function FloatLog() {
   const dispatch = useDispatch();
-  const isLogShow = useSelector(getLogState).isClick;
+  const isLogShow = useSelector(getLogState);
   const receivedLog = useSelector(getSendLogState);
   function onShowLog() {
     dispatch(logClick(!isLogShow));

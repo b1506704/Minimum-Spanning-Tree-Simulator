@@ -27,4 +27,4 @@ export const SetNewButtonState = (): AppThunk => {
 };
 
 export default logState.reducer;
-export const getLogState = (state: RootState) => state.logState;
+export const getLogState = (state: RootState) => state.logState.isClick;
