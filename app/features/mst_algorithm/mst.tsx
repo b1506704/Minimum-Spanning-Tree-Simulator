@@ -1,4 +1,5 @@
 import cytoscape from 'cytoscape';
+import { saveAs } from 'file-saver';
 /* eslint-disable no-alert */
 function RemoveElement(_cyCallBack: cytoscape.Core, _e_id: string) {
   if (_cyCallBack.getElementById(_e_id).inside()) {
@@ -9,6 +10,9 @@ function AddNode(_cyCallBack: cytoscape.Core, _id: string, _label: string) {
   if (_id !== 'test' && _id.trim() !== '') {
     _cyCallBack.add([{ data: { id: _id.trim(), label: _label.trim() } }]);
   }
+}
+function ExportGraph(_cyCallBack: cytoscape.Core) {
+  saveAs(_cyCallBack.png(), 'Graph.png');
 }
 function AddEdge(
   _cyCallBack: cytoscape.Core,
@@ -35,13 +39,7 @@ function AddEdge(
     }
   }
 }
-function EditEdge(_cyCallBack: cytoscape.Core, weight: number) {
-  let selectedEdge: cytoscape.EdgeSingular;
-  _cyCallBack.edges().on('click', (e) => {
-    selectedEdge = e.target;
-    selectedEdge.data('weight', weight);
-  });
-}
+
 function MoveEdge(
   _cyCallBack: cytoscape.Core,
   _edgeID: string,
@@ -125,7 +123,7 @@ export {
   RemoveElement,
   RemoveLoop,
   FindConnectedComponent,
-  EditEdge,
   GetMinEdge,
   Kruskal,
+  ExportGraph,
 };

@@ -3,6 +3,8 @@
 import React, { useEffect } from 'react';
 import CytoscapeComponent from 'react-cytoscapejs';
 import { useSelector, useDispatch } from 'react-redux';
+// import cytoscape from 'cytoscape';
+import { saveAs } from 'file-saver';
 import styles from './Graph.css';
 import {
   buttonClick,
@@ -25,9 +27,10 @@ import { getEdgeSource, getEdgeTarget, getEdgeWeight } from './edgeSlice';
 import { sendLog } from './sendLogSlice';
 import {
   configureClick,
-  // getConfigureState,
-  getDeleteState,
-  getEditState,
+  getNodeDeleteState,
+  getNodeEditState,
+  getEdgeDeleteState,
+  getEdgeEditState,
   getNodeLabelState,
   getNodeIDState,
   getEdgeIdState,
@@ -40,10 +43,19 @@ import {
   sendWeight,
   sendNodeID,
   sendNodeLabel,
-  editClick,
-  deleteClick,
+  editNode,
+  deleteNode,
+  editEdge,
+  deleteEdge,
 } from '../../components/float_menu/floatConfigureSlice';
 import { logClick } from '../../components/float_menu/floatLogSlice';
+import {
+  setExportGraph,
+  getExportGraphState,
+  setGraph,
+  getRefreshGraphState,
+  setRefreshGraph,
+} from './graphSlice';
 
 export default function Graph() {
   const dispatch = useDispatch();
@@ -54,21 +66,31 @@ export default function Graph() {
     dispatch(sendLog(`${_error}\n`));
   }
   let cyCallBack: cytoscape.Core;
+  // graph function state
   const isStartPrim = useSelector(getButtonState);
   const isCheckConnection = useSelector(getSwitchState);
-  const isNodeSubmit = useSelector(getNodeSubmitState);
-  const isEdgeSubmit = useSelector(getEdgeSubmitState);
-  // const isConfigureShow = useSelector(getConfigureState);
-  const isDelete = useSelector(getDeleteState);
-  const isEdit = useSelector(getEditState);
-  const onChangeNodeID = useSelector(getNodeIDState);
-  const onChangeNodeLabel = useSelector(getNodeLabelState);
-  const onChangeEdgeID = useSelector(getEdgeIdState);
+  const isExport = useSelector(getExportGraphState);
+  const isRefresh = useSelector(getRefreshGraphState);
+  // add edge state
   const newNodeID = useSelector(getNodeID);
   const newNodeLabel = useSelector(getNodeLabel);
   const newEdgeSource = useSelector(getEdgeSource);
   const newEdgeTarget = useSelector(getEdgeTarget);
   const newEdgeWeight = useSelector(getEdgeWeight);
+  const isNodeSubmit = useSelector(getNodeSubmitState);
+  const isEdgeSubmit = useSelector(getEdgeSubmitState);
+  // edit elements state
+  const isNodeDelete = useSelector(getNodeDeleteState);
+  const isNodeEdit = useSelector(getNodeEditState);
+  const isEdgeDelete = useSelector(getEdgeDeleteState);
+  const isEdgeEdit = useSelector(getEdgeEditState);
+  const onChangeNodeID = useSelector(getNodeIDState);
+  const onChangeNodeLabel = useSelector(getNodeLabelState);
+  const onChangeEdgeID = useSelector(getEdgeIdState);
+  const onChangeEdgeSource = useSelector(getSourceState);
+  const onChangeEdgeTarget = useSelector(getTargetState);
+  const onChangeEdgeWeight = useSelector(getWeightState);
+  // render on data changes function
   function FetchData() {
     const currentElements = cyCallBack.elements();
     if (isNodeSubmit === true) {
@@ -79,15 +101,48 @@ export default function Graph() {
       mst.AddEdge(cyCallBack, newEdgeSource, newEdgeTarget, newEdgeWeight);
       dispatch(submitEdge(!isEdgeSubmit));
     }
-    if (isDelete === true) {
+    if (isNodeDelete === true) {
       currentElements.$id(onChangeNodeID).remove();
-      currentElements.$id(onChangeEdgeID).remove();
-      dispatch(deleteClick(!isDelete));
+      dispatch(deleteNode(!isNodeDelete));
     }
-    if (isEdit === true) {
-      // tapNode.data('label', useSelector(getNodeLabel));
+    if (isNodeEdit === true) {
+      currentElements.$id(onChangeNodeID).data('label', onChangeNodeLabel);
+      dispatch(editNode(!isNodeEdit));
+    }
+    if (isEdgeDelete === true) {
+      currentElements.$id(onChangeEdgeID).remove();
+      dispatch(deleteEdge(!isEdgeDelete));
+    }
+    if (isEdgeEdit === true) {
+      mst.MoveEdge(
+        cyCallBack,
+        onChangeEdgeID,
+        onChangeEdgeSource,
+        onChangeEdgeTarget
+      );
+      currentElements.$id(onChangeEdgeID).data('weight', onChangeEdgeWeight);
+      dispatch(editEdge(!isEdgeEdit));
+    }
+    if (isExport === true) {
+      const jsonString = JSON.stringify(
+        cyCallBack.elements().jsons(),
+        ['data', 'id', 'label', 'source', 'target', 'weight'],
+        2
+      );
+      setTimeout(() => {
+        dispatch(setGraph(jsonString));
+        dispatch(sendLog(jsonString));
+        saveAs(cyCallBack.jpeg({ full: true, bg: 'black' }), 'Graph.jpg');
+        dispatch(setExportGraph(!isExport));
+      }, 5000);
+      // window.focus();
+    }
+    if (isRefresh === true) {
+      cyCallBack.layout(layout).run();
+      dispatch(setRefreshGraph(!isRefresh));
     }
   }
+  // render on graph functions
   function onLayoutReady() {
     if (isStartPrim.isClick === true) {
       const logValue = mst.Kruskal(cyCallBack);
@@ -107,7 +162,6 @@ export default function Graph() {
       cyCallBack.elements().selectify();
       cyCallBack.elements().unselect();
     }
-    // mst.EditEdge(cyCallBack, 25);
   }
   function refreshGraph() {
     cyCallBack.layout(layout).run();
@@ -169,7 +223,7 @@ export default function Graph() {
   return (
     <div className={styles.galaxy}>
       <div className={styles.stars} />
-      {/* <div className={styles.twinkling} /> */}
+      <div className={styles.twinkling} />
       <CytoscapeComponent
         elements={elements}
         layout={layout}

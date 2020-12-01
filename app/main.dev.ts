@@ -65,10 +65,10 @@ const createWindow = async () => {
   };
 
   mainWindow = new BrowserWindow({
-    show: true,
     width: 1366,
     height: 768,
     transparent: true,
+    fullscreen: true,
     frame: false,
     icon: getAssetPath('icon.png'),
     webPreferences:
@@ -83,7 +83,6 @@ const createWindow = async () => {
           },
   });
   mainWindow.webContents.setFrameRate(60);
-
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
   // @TODO: Use 'ready-to-show' event
@@ -96,9 +95,9 @@ const createWindow = async () => {
       mainWindow.minimize();
     } else {
       mainWindow.show();
-      mainWindow.setResizable(false);
       mainWindow.maximize();
       mainWindow.focus();
+      mainWindow.setResizable(false);
     }
   });
 

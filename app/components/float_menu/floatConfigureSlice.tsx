@@ -5,8 +5,10 @@ import { AppThunk, RootState } from '../../store';
 
 type ConfigureState = {
   isActive: boolean;
-  isDelete: boolean;
-  isEdit: boolean;
+  isNodeDelete: boolean;
+  isEdgeDelete: boolean;
+  isEditNode: boolean;
+  isEditEdge: boolean;
   n_id: string;
   n_label: string;
   e_id: string;
@@ -16,8 +18,10 @@ type ConfigureState = {
 };
 const initialState: ConfigureState = {
   isActive: false,
-  isDelete: false,
-  isEdit: false,
+  isNodeDelete: false,
+  isEdgeDelete: false,
+  isEditNode: false,
+  isEditEdge: false,
   n_id: '',
   n_label: '',
   e_id: '',
@@ -32,11 +36,17 @@ const configureState = createSlice({
     configureClick: (state, action: PayloadAction<boolean>) => {
       state.isActive = action.payload;
     },
-    editClick: (state, action: PayloadAction<boolean>) => {
-      state.isEdit = action.payload;
+    editNode: (state, action: PayloadAction<boolean>) => {
+      state.isEditNode = action.payload;
     },
-    deleteClick: (state, action: PayloadAction<boolean>) => {
-      state.isDelete = action.payload;
+    editEdge: (state, action: PayloadAction<boolean>) => {
+      state.isEditEdge = action.payload;
+    },
+    deleteNode: (state, action: PayloadAction<boolean>) => {
+      state.isNodeDelete = action.payload;
+    },
+    deleteEdge: (state, action: PayloadAction<boolean>) => {
+      state.isEdgeDelete = action.payload;
     },
     sendNodeID: (state, action: PayloadAction<string>) => {
       state.n_id = action.payload;
@@ -58,21 +68,31 @@ const configureState = createSlice({
     },
   },
 });
-export const { configureClick, editClick, deleteClick, sendEdgeID, sendSource, sendTarget, sendNodeID, sendNodeLabel, sendWeight } = configureState.actions;
+export const { configureClick, editNode, editEdge, deleteNode, deleteEdge, sendEdgeID, sendSource, sendTarget, sendNodeID, sendNodeLabel, sendWeight } = configureState.actions;
 
 export const SetNewConfigureState = (): AppThunk => {
   return (dispatch) => {
     dispatch(configureClick(false));
   };
 };
-export const SetNewEditState = (): AppThunk => {
+export const SetNewNodeEditState = (): AppThunk => {
   return (dispatch) => {
-    dispatch(editClick(false));
+    dispatch(editNode(false));
   };
 };
-export const SetNewDeleteState = (): AppThunk => {
+export const SetNewEdgeEditState = (): AppThunk => {
   return (dispatch) => {
-    dispatch(deleteClick(false));
+    dispatch(editEdge(false));
+  };
+};
+export const SetNewNodeDeleteState = (): AppThunk => {
+  return (dispatch) => {
+    dispatch(deleteNode(false));
+  };
+};
+export const SetNewEdgeDeleteState = (): AppThunk => {
+  return (dispatch) => {
+    dispatch(deleteEdge(false));
   };
 };
 export const SetNewEdgeIDState = (): AppThunk => {
@@ -108,8 +128,10 @@ export const SetNewNodeLabelState = (): AppThunk => {
 
 export default configureState.reducer;
 export const getConfigureState = (state: RootState) => state.configureState.isActive;
-export const getEditState = (state: RootState) => state.configureState.isEdit;
-export const getDeleteState = (state: RootState) => state.configureState.isDelete;
+export const getNodeEditState = (state: RootState) => state.configureState.isEditNode;
+export const getNodeDeleteState = (state: RootState) => state.configureState.isNodeDelete;
+export const getEdgeEditState = (state: RootState) => state.configureState.isEditEdge;
+export const getEdgeDeleteState = (state: RootState) => state.configureState.isEdgeDelete;
 export const getEdgeIdState = (state: RootState) => state.configureState.e_id;
 export const getSourceState = (state: RootState) => state.configureState.eSource;
 export const getTargetState = (state: RootState) => state.configureState.eTarget;

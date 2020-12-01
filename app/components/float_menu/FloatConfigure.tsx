@@ -3,11 +3,15 @@ import Draggable from 'react-draggable';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   configureClick,
-  deleteClick,
-  editClick,
+  deleteNode,
+  editNode,
+  deleteEdge,
+  editEdge,
   getConfigureState,
-  getDeleteState,
-  getEditState,
+  getNodeDeleteState,
+  getNodeEditState,
+  getEdgeEditState,
+  getEdgeDeleteState,
   getEdgeIdState,
   getNodeIDState,
   getNodeLabelState,
@@ -26,8 +30,10 @@ import styles from './FloatConfigure.css';
 export default function FloatConfigure() {
   const dispatch = useDispatch();
   const isConfigureShow = useSelector(getConfigureState);
-  const isEdit = useSelector(getEditState);
-  const isDelete = useSelector(getDeleteState);
+  const isNodeEdit = useSelector(getNodeEditState);
+  const isNodeDelete = useSelector(getNodeDeleteState);
+  const isEdgeEdit = useSelector(getEdgeEditState);
+  const isEdgeDelete = useSelector(getEdgeDeleteState);
   const eID = useSelector(getEdgeIdState);
   const eSource = useSelector(getSourceState);
   const eTarget = useSelector(getTargetState);
@@ -35,27 +41,32 @@ export default function FloatConfigure() {
   const nID = useSelector(getNodeIDState);
   const nLabel = useSelector(getNodeLabelState);
   function onClear() {
-    //
+    dispatch(sendEdgeID(''));
+    dispatch(sendSource(''));
+    dispatch(sendTarget(''));
+    dispatch(sendWeight(0));
+    dispatch(sendNodeID(''));
+    dispatch(sendNodeLabel(''));
   }
   function onDeleteEdge() {
     dispatch(sendEdgeID(eID));
-    dispatch(deleteClick(!isDelete));
+    dispatch(deleteEdge(!isEdgeDelete));
   }
   function onDeleteNode() {
     dispatch(sendNodeID(nID));
-    dispatch(deleteClick(!isDelete));
+    dispatch(deleteNode(!isNodeDelete));
   }
   function onEditEdge() {
     dispatch(sendEdgeID(eID));
     dispatch(sendSource(eSource));
     dispatch(sendTarget(eTarget));
     dispatch(sendWeight(eWeight));
-    dispatch(editClick(!isEdit));
+    dispatch(editEdge(!isEdgeEdit));
   }
   function onEditNode() {
     dispatch(sendNodeID(nID));
     dispatch(sendNodeLabel(nLabel));
-    dispatch(editClick(!isEdit));
+    dispatch(editNode(!isNodeEdit));
   }
   function onShowConfigure() {
     dispatch(configureClick(!isConfigureShow));
@@ -107,7 +118,7 @@ export default function FloatConfigure() {
             &#x2716;
           </button>
           <button type="button" onFocus={onEditEdge}>
-            &#x2716;
+            &#x1F5AB;
           </button>
         </div>
         <div className={styles.node_panel}>
@@ -125,7 +136,7 @@ export default function FloatConfigure() {
             &#x2716;
           </button>
           <button type="button" onFocus={onEditNode}>
-            &#x2716;
+            &#x1F5AB;
           </button>
         </div>
       </div>

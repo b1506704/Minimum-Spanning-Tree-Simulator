@@ -11,6 +11,7 @@ import submitReducer from './components/bottom_menu/submitSlice';
 import logReducer from './components/float_menu/floatLogSlice';
 import sendLogReducer from './features/graph/sendLogSlice';
 import configureReducer from './components/float_menu/floatConfigureSlice';
+import graphReducer from './features/graph/graphSlice';
 
 export default function createRootReducer(history: History) {
   return combineReducers({
@@ -24,5 +25,6 @@ export default function createRootReducer(history: History) {
     logState: logReducer,
     sendLogState: sendLogReducer,
     configureState: configureReducer,
+    graphState: graphReducer,
   });
 }
